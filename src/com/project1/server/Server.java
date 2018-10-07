@@ -1,11 +1,11 @@
 package com.project1.server;
 
 
-public class Module2{
+public class Server {
   int i;
   Module3 mod3;
 
-  public Module2(int i){
+  public Server(int i){
     this.i = i;
     mod3 = new Module3();
   }

@@ -1,8 +1,8 @@
 package com.project1.app;
 
 import java.util.*;
-import com.project1.client.Module1;
-import com.project1.server.Module2;
+import com.project1.client.Client;
+import com.project1.server.Server;
 
 public class MyApp {
 
@@ -12,8 +12,8 @@ public class MyApp {
         System.out.println("ERROR: Please include 1 argument");
         System.exit(1);
     }
-    Module1 a = new Module1(args[0]);
-    Module2 b = new Module2(101);
+    Client a = new Client(args[0]);
+    Server b = new Server(101);
 
     a.printit();
     b.printit();

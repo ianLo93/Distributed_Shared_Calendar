@@ -1,9 +1,9 @@
 package com.project1.client;
 
-public class Module1{
+public class Client {
   String str;
 
-  public Module1(String s){
+  public Client(String s){
     this.str = s;
   }
 
