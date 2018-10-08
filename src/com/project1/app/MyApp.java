@@ -6,7 +6,7 @@ import com.project1.server.Server;
 
 public class MyApp {
 
-  public static void main(String args[]){
+  public static void main(String args[]) throws Exception {
 
 //    if(args.length < 1){
 //        System.out.println("ERROR: Please include 1 argument");

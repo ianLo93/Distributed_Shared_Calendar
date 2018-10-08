@@ -6,7 +6,7 @@ import java.net.*;
 
 public class Server extends Thread {
   private DatagramSocket serverSocket;
-  private byte[] buf = new byte[1024];
+  private byte[] buf;
   boolean running;
 
   public Server(int port){
@@ -25,6 +25,7 @@ public class Server extends Thread {
       while (running) {
           try {
               // Create new datagram packet holder and send received msg to buf
+              buf = new byte[1024];
               DatagramPacket packet = new DatagramPacket(buf, buf.length);
               serverSocket.receive(packet);
 
@@ -34,16 +35,19 @@ public class Server extends Thread {
 
               // Make the same text to be a new datagram packet
               packet = new DatagramPacket(buf, buf.length, addr, port);
-              String msg = new String(packet.getData(), 0, packet.getLength());
+              String msg = new String(packet.getData());
+              msg = msg.trim();
 
               // End instruction
-              if (msg == "end") {
+              if (msg.equals("end")) {
                   running = false;
+                  buf = null;
                   continue;
               }
-
+              System.out.println(msg+"a");
               // If not end, send the text back
               serverSocket.send(packet);
+              buf = null;
           }
           catch (IOException i) {
               System.out.println(i);
