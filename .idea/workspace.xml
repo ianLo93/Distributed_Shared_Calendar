@@ -2,9 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a5f8cbba-5964-43d6-989d-2c67751893f0" name="Default Changelist" comment="">
+
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/project1/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/project1/client/Client.java" afterDir="false" />
+
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Distributed_Shared_Calendar/com/project1/app/MyApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Distributed_Shared_Calendar/com/project1/app/MyApp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Distributed_Shared_Calendar/com/project1/server/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Distributed_Shared_Calendar/com/project1/server/Server.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/project1/app/MyApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/project1/app/MyApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/project1/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/project1/server/Server.java" afterDir="false" />
+
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,8 +25,11 @@
     <session id="2098291642">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.6" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -34,15 +45,20 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="19" />
-          <entry key="java" value="12" />
+          <entry key="java" value="2279" />
+          <entry key="txt" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="12" />
-          <entry key="PLAIN_TEXT" value="19" />
+          <entry key="JAVA" value="2279" />
+          <entry key="PLAIN_TEXT" value="23" />
         </counts>
       </usages-collector>
+      <usages-collector id="statistics.spring.boot.run.usages" />
+      <usages-collector id="statistics.js.language.service.starts" />
+      <usages-collector id="statistics.vcs.git.usages" />
+      <usages-collector id="statistics.spring.boot.mvc.usages" />
     </session>
     <session id="-63930642">
       <usages-collector id="statistics.lifecycle.project">
@@ -84,6 +100,15 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="300">
               <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
+
+        <entry file="file://$PROJECT_DIR$/src/com/project1/client/Client.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="513">
+              <caret line="29" column="41" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="41" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+
             </state>
           </provider>
         </entry>
@@ -91,6 +116,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/project1/client/Client.java">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="420">
               <caret line="28" column="25" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
               <folding>
@@ -114,16 +140,33 @@
                 <element signature="e#194#195#0" expanded="true" />
                 <element signature="e#130#131#0" expanded="true" />
                 <element signature="e#158#159#0" expanded="true" />
+
+            <state relative-caret-position="365">
+              <caret line="43" column="29" lean-forward="true" selection-start-line="43" selection-start-column="29" selection-end-line="43" selection-end-column="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/project1/server/Server.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
               <caret line="14" column="3" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
+
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/project1/app/MyApp.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="213">
+              <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+
             </state>
           </provider>
         </entry>
@@ -145,6 +188,11 @@
       <list>
         <option value="$PROJECT_DIR$/src/com/project1/client/Module1.java" />
         <option value="$PROJECT_DIR$/src/com/project1/server/Client.java" />
+
+
+        <option value="$PROJECT_DIR$/src/com/project1/client/Client.java" />
+        <option value="$PROJECT_DIR$/src/com/project1/server/Server.java" />
+
         <option value="$PROJECT_DIR$/src/com/project1/app/MyApp.java" />
         <option value="$PROJECT_DIR$/src/com/project1/server/Server.java" />
         <option value="$PROJECT_DIR$/src/com/project1/Meeting/meeting.java" />
@@ -170,6 +218,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+
+      <pane id="PackagesPane" />
+
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -206,15 +257,21 @@
           <select />
         </subPane>
       </pane>
+
       <pane id="PackagesPane" />
+
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538956423684" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538968012071" />
+
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -233,6 +290,26 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="MyApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.project1.app.MyApp" />
+      <module name="Distributed_Shared_Calendar" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.project1.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.MyApp" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -243,19 +320,33 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1538942742303</updated>
+
       <workItem from="1538942746325" duration="745000" />
       <workItem from="1538945981522" duration="3891000" />
+
+      <workItem from="1538942746325" duration="4432000" />
+      <workItem from="1538964102317" duration="3210000" />
+      <workItem from="1538967498849" duration="513000" />
+
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+
     <option name="totallyTimeSpent" value="4636000" />
+
+    <option name="totallyTimeSpent" value="8155000" />
+
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1388" height="877" extended-state="6" />
     <editor active="true" />
     <layout>
+
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14561664" />
+
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2563574" />
+
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -264,7 +355,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32897863" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32897863" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -272,7 +363,12 @@
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+
       <window_info anchor="bottom" id="Version Control" order="10" />
+
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32897863" />
+      <window_info anchor="bottom" id="Messages" order="11" />
+
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -291,13 +387,18 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/project1/server/Module3.java">
+    <entry file="file://$PROJECT_DIR$/src/com/project1/server/Module3.java" />
+    <entry file="file://$PROJECT_DIR$/src/com/project1/client/Client.java">
       <provider selected="true" editor-type-id="text-editor">
+
         <state relative-caret-position="30">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="20" />
+
+        <state relative-caret-position="513">
+          <caret line="29" column="41" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="41" />
+
           <folding>
-            <element signature="e#101#102#0" expanded="true" />
-            <element signature="e#145#146#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -318,13 +419,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/project1/server/Server.java">
       <provider selected="true" editor-type-id="text-editor">
+
         <state relative-caret-position="180">
           <caret line="14" column="3" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
+
+        <state relative-caret-position="365">
+          <caret line="43" column="29" lean-forward="true" selection-start-line="43" selection-start-column="29" selection-end-line="43" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/project1/meeting/Meeting.java">
       <provider selected="true" editor-type-id="text-editor">
+
         <state relative-caret-position="15">
           <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="27" />
           <folding>
@@ -334,10 +444,17 @@
             <element signature="e#194#195#0" expanded="true" />
             <element signature="e#130#131#0" expanded="true" />
             <element signature="e#158#159#0" expanded="true" />
+
+        <state relative-caret-position="213">
+          <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+
           </folding>
         </state>
       </provider>
     </entry>
+
     <entry file="file://$PROJECT_DIR$/src/com/project1/client/Client.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -350,6 +467,7 @@
         </state>
       </provider>
     </entry>
+
   </component>
   <component name="masterDetails">
     <states>
