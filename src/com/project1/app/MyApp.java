@@ -8,27 +8,26 @@ public class MyApp {
 
   public static void main(String args[]){
 
-    if(args.length < 1){
-        System.out.println("ERROR: Please include 1 argument");
-        System.exit(1);
+//    if(args.length < 1){
+//        System.out.println("ERROR: Please include 1 argument");
+//        System.exit(1);
+//    }
+
+    Server server = new Server(5000);
+    server.setDaemon(true);
+    server.start();
+
+    Client client = new Client();
+
+    Scanner sc = new Scanner(System.in);
+    String line = "";
+    while (!line.equals("end")) {
+      line = sc.nextLine();
+      String msg = client.sendMsg(line, 5000);
+      System.out.println(msg);
     }
-    Client a = new Client(args[0]);
-    Server b = new Server(101);
 
-    a.printit();
-    b.printit();
-    b.printModule3();
-
-    ArrayList<String> lis = new ArrayList<String>();
-    lis.add("Testing");
-    lis.add("importing");
-    lis.add("a");
-    lis.add("foreign");
-    lis.add("module.");
-
-    for(String item : lis){
-      System.out.println(item);
-    }
+    client.close();
 
   }
 
