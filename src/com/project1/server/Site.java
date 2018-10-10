@@ -3,8 +3,7 @@ package com.project1.server;
 import com.project1.app.Calendar;
 import javafx.util.Pair;
 
-import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 
@@ -18,13 +17,24 @@ public class Site {
     private ArrayList<Event> plog;
     private int[][] T;
 
+    @SuppressWarnings("unchecked")
     public Site(String siteid_, int port_){
-//        try {
-//            load_state();
-//        }
-//        catch (IOException i){
+        try {
+            FileInputStream saveFile = new FileInputStream("state.sav");
+            ObjectInputStream restore = new ObjectInputStream(saveFile);
+            siteid = (String) restore.readObject();
+            port = (Integer) restore.readObject();
+            counter = (Integer) restore.readObject();
+            schedule = (ArrayList<Meeting>) restore.readObject();
+            log = (ArrayList<Event>) restore.readObject();
+            plog = (ArrayList<Event>) restore.readObject();
+            T = (int[][]) restore.readObject();
+            restore.close();
+        } catch (IOException i){
             init(siteid_, port_);
-//        }
+        } catch (ClassNotFoundException c) {
+            init(siteid_, port_);
+        }
     }
 
     public void view(){
@@ -67,8 +77,21 @@ public class Site {
         this.schedule = new ArrayList<>();
     }
 
-    private void load_state() {
-        // TODO load state from computer
+    public void save_state() {
+        try {
+            FileOutputStream saveFile = new FileOutputStream("state.sav");
+            ObjectOutputStream save = new ObjectOutputStream(saveFile);
+            save.writeObject(siteid);
+            save.writeObject(port);
+            save.writeObject(counter);
+            save.writeObject(schedule);
+            save.writeObject(log);
+            save.writeObject(plog);
+            save.writeObject(T);
+            save.close();
+        } catch (IOException i) {
+            System.out.println(i);
+        }
     }
 
     private ArrayList<Meeting> relevantMeetings(String[] participants) {

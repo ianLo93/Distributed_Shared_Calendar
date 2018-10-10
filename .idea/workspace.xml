@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="30bffeb1-760d-429a-8f8b-8689fd9199ef" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/project1/server/Event.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Distributed_Shared_Calendar/com/project1/server/Meeting.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Distributed_Shared_Calendar/com/project1/server/Meeting.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/project1/app/Calendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/project1/app/Calendar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/project1/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/project1/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/project1/server/Meeting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/project1/server/Meeting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/project1/server/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/project1/server/Message.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/project1/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/project1/server/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/project1/server/Site.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/project1/server/Site.java" afterDir="false" />
     </list>
@@ -41,12 +35,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="16" />
-          <entry key="java" value="8215" />
+          <entry key="java" value="8991" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="8215" />
+          <entry key="JAVA" value="8991" />
           <entry key="PLAIN_TEXT" value="16" />
         </counts>
       </usages-collector>
@@ -70,17 +64,17 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/project1/server/Site.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1911">
-              <caret line="100" column="14" lean-forward="true" selection-start-line="100" selection-start-column="14" selection-end-line="100" selection-end-column="14" />
+            <state relative-caret-position="630">
+              <caret line="39" column="23" lean-forward="true" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#608#609#0" expanded="true" />
-                <element signature="e#666#667#0" expanded="true" />
-                <element signature="e#846#847#0" expanded="true" />
-                <element signature="e#895#896#0" expanded="true" />
+                <element signature="e#363#393#0" expanded="true" />
+                <element signature="e#862#863#0" expanded="true" />
+                <element signature="e#1042#1043#0" expanded="true" />
+                <element signature="e#1091#1092#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -89,7 +83,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/project1/client/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1536">
+            <state relative-caret-position="-39">
               <caret line="81" column="23" selection-start-line="81" selection-start-column="23" selection-end-line="81" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -100,14 +94,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/project1/server/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="458">
-              <caret line="59" column="44" lean-forward="true" selection-start-line="59" selection-start-column="44" selection-end-line="59" selection-end-column="44" />
+            <state relative-caret-position="752">
+              <caret line="108" column="22" selection-start-line="108" selection-start-column="22" selection-end-line="108" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1539195230468" expanded="true" signature="169:3809" ph="..." />
+                <marker date="1539195687485" expanded="true" signature="169:3869" ph="..." />
               </folding>
             </state>
           </provider>
@@ -175,9 +169,9 @@
         <option value="$PROJECT_DIR$/src/com/project1/server/Meeting.java" />
         <option value="$PROJECT_DIR$/src/com/project1/client/Client.java" />
         <option value="$PROJECT_DIR$/src/com/project1/server/Event.java" />
-        <option value="$PROJECT_DIR$/src/com/project1/server/Site.java" />
         <option value="$PROJECT_DIR$/src/com/project1/server/Message.java" />
         <option value="$PROJECT_DIR$/src/com/project1/server/Server.java" />
+        <option value="$PROJECT_DIR$/src/com/project1/server/Site.java" />
       </list>
     </option>
   </component>
@@ -246,7 +240,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539195234036" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539197012352" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
@@ -312,12 +306,12 @@
       <option name="presentableId" value="Default" />
       <updated>1539040412947</updated>
       <workItem from="1539040418726" duration="13359000" />
-      <workItem from="1539142906236" duration="19968000" />
+      <workItem from="1539142906236" duration="21668000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33327000" />
+    <option name="totallyTimeSpent" value="35027000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1513" height="973" extended-state="6" />
@@ -387,32 +381,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/project1/client/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1536">
-          <caret line="81" column="23" selection-start-line="81" selection-start-column="23" selection-end-line="81" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2740#2741#0" expanded="true" />
-            <element signature="e#2776#2777#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/project1/server/Site.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1911">
-          <caret line="100" column="14" lean-forward="true" selection-start-line="100" selection-start-column="14" selection-end-line="100" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#608#609#0" expanded="true" />
-            <element signature="e#666#667#0" expanded="true" />
-            <element signature="e#846#847#0" expanded="true" />
-            <element signature="e#895#896#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/project1/server/Meeting.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="462">
@@ -427,13 +395,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/project1/server/Server.java">
+    <entry file="file://$PROJECT_DIR$/src/com/project1/client/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="59" column="44" lean-forward="true" selection-start-line="59" selection-start-column="44" selection-end-line="59" selection-end-column="44" />
+        <state relative-caret-position="-39">
+          <caret line="81" column="23" selection-start-line="81" selection-start-column="23" selection-end-line="81" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1539195230468" expanded="true" signature="169:3809" ph="..." />
+            <element signature="e#2740#2741#0" expanded="true" />
+            <element signature="e#2776#2777#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/project1/server/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="752">
+          <caret line="108" column="22" selection-start-line="108" selection-start-column="22" selection-end-line="108" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1539195687485" expanded="true" signature="169:3869" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/project1/server/Site.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="39" column="23" lean-forward="true" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#363#393#0" expanded="true" />
+            <element signature="e#862#863#0" expanded="true" />
+            <element signature="e#1042#1043#0" expanded="true" />
+            <element signature="e#1091#1092#0" expanded="true" />
           </folding>
         </state>
       </provider>

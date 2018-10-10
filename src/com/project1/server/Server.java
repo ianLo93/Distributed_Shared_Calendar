@@ -104,7 +104,9 @@ public class Server extends Thread {
                 exe_cmd(recvMsg);
 
             } catch (IOException i) {
+                mySite.save_state();
                 System.out.println(i);
+                break;
             }
         }
     }
