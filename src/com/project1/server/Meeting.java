@@ -1,7 +1,9 @@
 package com.project1.server;
+
+import java.io.*;
 import java.util.ArrayList;
 
-public class Meeting {
+public class Meeting implements Serializable {
 
     private String name;
     private String day;

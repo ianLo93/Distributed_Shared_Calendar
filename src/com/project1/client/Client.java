@@ -1,5 +1,4 @@
 package com.project1.client;
-import com.project1.server.Message;
 
 import java.io.*;
 import java.net.*;
@@ -44,7 +43,7 @@ public class Client {
         else if (cmds[1].equals("cancel")) {
             if (cmds.length != 3) {
                 System.out.println("ERROR: Invalid Meeting Cancellation");
-                System.out.println("USAGE: % cancle <name>");
+                System.out.println("USAGE: % cancel <name>");
                 return null;
             }
             msg = new Message(cmds[1], null, null, this.siteid,
@@ -81,6 +80,16 @@ public class Client {
                     null, null, null, null, null);
             return msg;
         }
+        else if (cmds[1].equals("quit")) {
+            if (cmds.length != 2) {
+                System.out.println("ERROR: Invalid Exit Command");
+                System.out.println("USAGE: % quit");
+                return null;
+            }
+            msg = new Message(cmds[1], null, null, this.siteid,
+                    null, null, null, null, null);
+            return msg;
+        }
         else {
             System.out.println("ERROR: Invalid Command");
             System.out.println("USAGE: % <command> [<meeting_info>]");
@@ -98,6 +107,7 @@ public class Client {
 
             // Put obj into datagram packet and mark the address and port
             InetAddress addr = InetAddress.getByName(siteid_);
+            System.out.println(addr.getHostName() + " " + port_);
             DatagramPacket packet = new DatagramPacket(buf, buf.length, addr, port_);
 
             // Send packets

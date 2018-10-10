@@ -2,26 +2,25 @@ package com.project1.server;
 
 
 import com.project1.client.Client;
+import com.project1.client.Message;
 
 import java.io.*;
 import java.net.*;
-import java.util.Map;
+//import java.util.*;
 
 public class Server extends Thread {
 
     private DatagramSocket serverSocket;
-    private ByteArrayInputStream byIn;
-    private ObjectInputStream objIn;
     private Site mySite;
     private byte[] buf;
-    private boolean running;
     private String siteid;
     private int port;
 
-    public Server(String hostname_, int port_) {
+    public Server(String siteid_, int port_) {
         try {
             this.serverSocket = new DatagramSocket(port);
-            this.siteid = hostname_;
+            this.siteid = siteid_;
+            System.out.println(siteid);
             this.port = port_;
             this.mySite = new Site(siteid, port);
         } catch (SocketException s) {
@@ -37,6 +36,7 @@ public class Server extends Thread {
             String day, start, end;
             String[] participants;
             if (cmd.equals("schedule")) {
+                System.out.println("You get here");
                 participants = recvMsg.getMeeting().getParticipants();
                 day = recvMsg.getMeeting().getDay();
                 start = recvMsg.getMeeting().getStartTime();
@@ -52,6 +52,7 @@ public class Server extends Thread {
                     Client client = new Client(siteid, port);
                 }
             } else if (cmd.equals("cancel")) {
+                System.out.println("You get here");
                 // TODO check meeting
                 // TODO cancel meeting
                 // TODO update T, schedule, log
@@ -74,22 +75,21 @@ public class Server extends Thread {
 
     @Override
     public void run() {
-        running = true;
+        boolean running = true;
 
         while (running) {
             try {
                 // Create datagram packet holder and send received msg to buf
+                buf = new byte[1024];
                 DatagramPacket packet = new DatagramPacket(buf, buf.length);
+                System.out.println(packet.getLength());
                 serverSocket.receive(packet);
-
-                // Get packet sender address and port
-                InetAddress addr = packet.getAddress();
-                int port = packet.getPort();
+                System.out.println(packet.getLength());
 
                 // Get byte data and send to object stream
-                buf = packet.getData();
-                byIn = new ByteArrayInputStream(buf);
-                objIn = new ObjectInputStream(byIn);
+                byte[] data = packet.getData();
+                ByteArrayInputStream byIn = new ByteArrayInputStream(data);
+                ObjectInputStream objIn = new ObjectInputStream(byIn);
 
                 // Get the object message
                 Message recvMsg;
@@ -100,8 +100,18 @@ public class Server extends Thread {
                     continue;
                 }
 
+                System.out.println(recvMsg.getSender());
+
+                if (recvMsg.getMsg().equals("quit")) {
+                    running = false;
+                    mySite.save_state();
+                    continue;
+                }
+
                 // Execute commands
                 exe_cmd(recvMsg);
+
+                buf = null;
 
             } catch (IOException i) {
                 mySite.save_state();

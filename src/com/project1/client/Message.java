@@ -1,14 +1,17 @@
-package com.project1.server;
+package com.project1.client;
 
-import java.util.*;
+import com.project1.server.Event;
+import com.project1.server.Meeting;
 
-public class Message {
+import java.io.*;
 
-    private String msg;
-    private Event[] NP; // Partial Log
-    private int[][] T; // Global knowledge matrix
-    private String sender;
-    private Meeting meeting;
+public class Message implements Serializable {
+
+    transient private String msg;
+    transient private Event[] NP; // Partial Log
+    transient private int[][] T; // Global knowledge matrix
+    transient private String sender;
+    transient private Meeting meeting;
 
     public Message(String msg_, Event[] NP_, int[][] T_, String sender_,
                    String name_, String day_, String start_, String end_, String[] participants_) {
@@ -16,7 +19,7 @@ public class Message {
         this.NP = NP_;
         this.T = T_;
         this.sender = sender_;
-        meeting = new Meeting(name_, day_, start_, end_, participants_);
+        this.meeting = new Meeting(name_, day_, start_, end_, participants_);
     }
 
     public String getMsg() { return msg; }

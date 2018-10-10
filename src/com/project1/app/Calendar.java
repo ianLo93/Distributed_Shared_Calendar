@@ -1,28 +1,28 @@
 package com.project1.app;
 import java.util.*;
 import com.project1.client.Client;
-import com.project1.server.Message;
+import com.project1.client.Message;
 import com.project1.server.Server;
 import javafx.util.*;
 
 public class Calendar {
 
-    public static Map<Integer, Pair<String, Integer>> phonebook = new HashMap<>();
+    public static Map<String, Pair<Integer, Integer>> phonebook = new HashMap<>();
 
-    public static void main(String args[]) throws Exception {
+    public static void main(String args[]) {
 
         if(args.length != 1){
             System.out.println("ERROR: Invalid Arguments");
-            System.out.println("USAGE: ./a.out <site_id> ");
+            System.out.println("USAGE: ./a.java <site_id> ");
             System.exit(1);
         }
 
-        phonebook.put(0, new Pair("localhost", 5000));
-        phonebook.put(1, new Pair("127.4.0.2", 5001));
-        phonebook.put(2, new Pair("127.4.0.3", 5002));
+        phonebook.put("localhost", new Pair(0, 5000));
+        phonebook.put("127.4.0.2", new Pair(1, 5001));
+        phonebook.put("127.4.0.3", new Pair(2, 5002));
 
-        int port = Calendar.phonebook.get(Integer.parseInt(args[1])).getValue();
-        String siteid = Calendar.phonebook.get(Integer.parseInt(args[1])).getKey();
+        String siteid = args[0];
+        int port = Calendar.phonebook.get(siteid).getValue();
 
         Server server = new Server(siteid, port);
         server.setDaemon(true);
@@ -32,7 +32,7 @@ public class Calendar {
 
         Scanner sc = new Scanner(System.in);
         String command = "";
-        while (!command.equals("end")) {
+        while (!command.equals("% quit")) {
             command = sc.nextLine();
             Message msg = client.parse_command(command);
             client.sendMsg(msg, siteid, port);
