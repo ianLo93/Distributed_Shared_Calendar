@@ -12,21 +12,23 @@ public class Server extends Thread {
 
     private DatagramSocket serverSocket;
     private Site mySite;
+    private boolean running;
     private byte[] buf;
     private String siteid;
     private int port;
 
     public Server(String siteid_, int port_) {
         try {
-            this.serverSocket = new DatagramSocket(port);
+            this.serverSocket = new DatagramSocket(port_);
             this.siteid = siteid_;
-            System.out.println(siteid);
             this.port = port_;
             this.mySite = new Site(siteid, port);
         } catch (SocketException s) {
             System.out.println(s);
         }
     }
+
+    public boolean getStatus() { return running; }
 
     private void exe_cmd(Message recvMsg) {
         // Get message command
@@ -36,7 +38,6 @@ public class Server extends Thread {
             String day, start, end;
             String[] participants;
             if (cmd.equals("schedule")) {
-                System.out.println("You get here");
                 participants = recvMsg.getMeeting().getParticipants();
                 day = recvMsg.getMeeting().getDay();
                 start = recvMsg.getMeeting().getStartTime();
@@ -48,8 +49,8 @@ public class Server extends Thread {
                     // TODO schedule meeting
                     // TODO update T, schedule, log
                     // TODO make NP, insert T and NP to message
-                    // TODO send message to participants
-                    Client client = new Client(siteid, port);
+                    // TODO client send message to participants
+                     Client client = new Client(siteid, port);
                 }
             } else if (cmd.equals("cancel")) {
                 System.out.println("You get here");
@@ -75,23 +76,21 @@ public class Server extends Thread {
 
     @Override
     public void run() {
-        boolean running = true;
+        running = true;
 
         while (running) {
             try {
                 // Create datagram packet holder and send received msg to buf
                 buf = new byte[1024];
                 DatagramPacket packet = new DatagramPacket(buf, buf.length);
-                System.out.println(packet.getLength());
                 serverSocket.receive(packet);
-                System.out.println(packet.getLength());
 
                 // Get byte data and send to object stream
                 byte[] data = packet.getData();
                 ByteArrayInputStream byIn = new ByteArrayInputStream(data);
                 ObjectInputStream objIn = new ObjectInputStream(byIn);
 
-                // Get the object message
+                // Get the message object
                 Message recvMsg;
                 try {
                     recvMsg = (Message) objIn.readObject();
@@ -99,9 +98,9 @@ public class Server extends Thread {
                     System.out.println(c);
                     continue;
                 }
-
-                System.out.println(recvMsg.getSender());
-
+                // Close input stream
+                objIn.close();
+                // Quit when recv command quit
                 if (recvMsg.getMsg().equals("quit")) {
                     running = false;
                     mySite.save_state();
@@ -110,9 +109,8 @@ public class Server extends Thread {
 
                 // Execute commands
                 exe_cmd(recvMsg);
-
+                // Release buffer
                 buf = null;
-
             } catch (IOException i) {
                 mySite.save_state();
                 System.out.println(i);

@@ -1,6 +1,8 @@
 package com.project1.server;
 
-public class Event {
+import java.io.*;
+
+public class Event implements Serializable {
 
     private String op;
     private int time;
@@ -14,31 +16,22 @@ public class Event {
         this.meeting = m_;
     }
 
-    public String getOp() {
-        return op;
-    }
+    public String getOp() { return op; }
+    public int getTime() { return time;}
+    public Meeting getMeeting() { return meeting; }
+    public String getSite() { return site; }
 
-    public int getTime() {
-        return time;
-    }
-
-    public Meeting getMeeting() {
-        return meeting;
-    }
-
-    public String getSite() {
-        return site;
-    }
-
-    public void printEvent() {
-        System.out.print(op + " ");
-        meeting.printMeeting();
+    public String toString() {
+        StringBuilder e = new StringBuilder(op+" ");
+        e.append(meeting.toString());
+        return e.toString();
     }
 
 //    public static void main(String[] args) {
 //        Meeting m = new Meeting(
-//                "Breakfast", "10/10/2018", "8:00", "13:30", new String[] {"me"});
+//                "Breakfast", "10/10/2018", "8:00", "13:30", new String[] {"me", "heheh"});
 //        Event e = new Event("create", 2, "aaa", m);
-//        e.printEvent();
+//        System.out.println(e);
+//        System.out.println(m);
 //    }
 }

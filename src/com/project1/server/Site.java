@@ -38,16 +38,16 @@ public class Site {
     }
 
     public void view(){
-        for (Meeting m: schedule) m.printMeeting();
+        for (Meeting m: schedule) System.out.println(m);;
     }
 
     public void myView(){
         ArrayList<Meeting> ms = relevantMeetings(new String[] {siteid});
-        for (Meeting m: ms) m.printMeeting();
+        for (Meeting m: ms) System.out.println(m);;
     }
 
     public void viewLog(){
-        for (Event e: log) e.printEvent();
+        for (Event e: log) System.out.println(e);;
     }
 
     public boolean hasConflict(String day, String start, String end, String[] participants){

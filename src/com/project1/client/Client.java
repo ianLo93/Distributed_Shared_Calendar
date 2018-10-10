@@ -23,22 +23,24 @@ public class Client {
     }
 
     public Message parse_command (String command) {
+        // Parse command
         String[] cmds = command.split(" ");
-        Message msg;
+        // Error checking
         if (cmds.length < 2 || !cmds[0].equals("%")) {
             System.out.println("ERROR: Invalid Command");
             System.out.println("USAGE: % <command> [<meeting_info>]");
             return null;
         }
+        // Implement command "schedule", "cancel", "view", "myview", "log"
         if (cmds[1].equals("schedule")) {
             if (cmds.length != 7) {
                 System.out.println("ERROR: Invalid Meeting Schedule");
-                System.out.println("USAGE: % schedule <name> <day> <start_time> <end_time> <participants>");
+                System.out.println("USAGE: % schedule <name> <day> <start_time> " +
+                        "<end_time> <participants>");
                 return null;
             }
-            msg = new Message(cmds[1], null, null, this.siteid,
+            return new Message(cmds[1], null, null, this.siteid,
                     cmds[2], cmds[3], cmds[4], cmds[5], cmds[6].split(","));
-            return msg;
         }
         else if (cmds[1].equals("cancel")) {
             if (cmds.length != 3) {
@@ -46,9 +48,8 @@ public class Client {
                 System.out.println("USAGE: % cancel <name>");
                 return null;
             }
-            msg = new Message(cmds[1], null, null, this.siteid,
+            return new Message(cmds[1], null, null, this.siteid,
                     cmds[2], null, null, null, null);
-            return msg;
         }
         else if (cmds[1].equals("view")) {
             if (cmds.length != 2) {
@@ -56,9 +57,8 @@ public class Client {
                 System.out.println("USAGE: % view");
                 return null;
             }
-            msg = new Message(cmds[1], null, null, this.siteid,
+            return new Message(cmds[1], null, null, this.siteid,
                     null, null, null, null, null);
-            return msg;
         }
         else if (cmds[1].equals("myview")) {
             if (cmds.length != 2) {
@@ -66,9 +66,8 @@ public class Client {
                 System.out.println("USAGE: % myview");
                 return null;
             }
-            msg = new Message(cmds[1], null, null, this.siteid,
+            return new Message(cmds[1], null, null, this.siteid,
                     null, null, null, null, null);
-            return msg;
         }
         else if (cmds[1].equals("log")) {
             if (cmds.length != 2) {
@@ -76,9 +75,8 @@ public class Client {
                 System.out.println("USAGE: % log");
                 return null;
             }
-            msg = new Message(cmds[1], null, null, this.siteid,
+            return new Message(cmds[1], null, null, this.siteid,
                     null, null, null, null, null);
-            return msg;
         }
         else if (cmds[1].equals("quit")) {
             if (cmds.length != 2) {
@@ -86,9 +84,8 @@ public class Client {
                 System.out.println("USAGE: % quit");
                 return null;
             }
-            msg = new Message(cmds[1], null, null, this.siteid,
+            return new Message(cmds[1], null, null, this.siteid,
                     null, null, null, null, null);
-            return msg;
         }
         else {
             System.out.println("ERROR: Invalid Command");
@@ -103,11 +100,13 @@ public class Client {
             ByteArrayOutputStream byOut = new ByteArrayOutputStream();
             ObjectOutputStream objOut = new ObjectOutputStream(byOut);
             objOut.writeObject(msg);
+            // Close output stream
+            objOut.close();
+            // Output to buffer
             buf = byOut.toByteArray();
 
             // Put obj into datagram packet and mark the address and port
             InetAddress addr = InetAddress.getByName(siteid_);
-            System.out.println(addr.getHostName() + " " + port_);
             DatagramPacket packet = new DatagramPacket(buf, buf.length, addr, port_);
 
             // Send packets

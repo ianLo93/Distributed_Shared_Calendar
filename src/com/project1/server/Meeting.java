@@ -1,7 +1,6 @@
 package com.project1.server;
 
 import java.io.*;
-import java.util.ArrayList;
 
 public class Meeting implements Serializable {
 
@@ -25,17 +24,20 @@ public class Meeting implements Serializable {
     public String getEndTime() { return end; }
     public String[] getParticipants() { return participants; }
 
-    public void printMeeting(){
-        System.out.print(name + " " + day+ " " + start + " " + end + " ");
-        for (String p : participants){
-            System.out.print(p + ",");
+    public String toString(){
+        StringBuilder m = new StringBuilder(name + " " + day+ " " + start + " " + end + " ");
+        int i=0;
+        for (; i<participants.length-1; i++){
+            m.append(participants[i]+",");
         }
+        m.append(participants[i]);
+        return m.toString();
     }
 
-    public static void main(String[] args) {
-        String[] p = {"localhost"};
-        Meeting m = new Meeting("abs", "10/9/2018", "8:00", "13:30", p);
-        m.printMeeting();
-    }
+//    public static void main(String[] args) {
+//        String[] p = {"localhost"};
+//        Meeting m = new Meeting("abs", "10/9/2018", "8:00", "13:30", p);
+//        m.printMeeting();
+//    }
 
 }
