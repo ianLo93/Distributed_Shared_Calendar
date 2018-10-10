@@ -6,13 +6,15 @@ import java.net.*;
 public class Client {
 
     private DatagramSocket clientSocket;
+    private String siteid;
     private InetAddress addr;
     private byte[] buf;
 
-    public Client() {
+    public Client(String hostname) {
         try {
-            clientSocket = new DatagramSocket();
-            addr = InetAddress.getByName("localhost");
+            this.clientSocket = new DatagramSocket();
+            this.addr = InetAddress.getByName("localhost");
+            this.siteid = hostname;
         }
         catch (SocketException s) {
             System.out.println(s);

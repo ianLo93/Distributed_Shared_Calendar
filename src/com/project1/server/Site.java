@@ -1,35 +1,30 @@
-package com.project1.app;
+package com.project1.server;
 
-import com.project1.meeting.Meeting;
 import javafx.util.Pair;
 import java.util.*;
 
 
 public class Site {
 
-    public String site_id;
+    private String siteid;
+    private int port;
+    private int counter;
+    private ArrayList<Meeting> schedule;
+    private ArrayList<Pair<String, String>> log;
+    private ArrayList<Pair<String, String>> plog;
+    private ArrayList<String> T;
+//    private ArrayList<Integer> timeline;
+    private Map<String, Integer> mtoT;
 
-    public int port;
+    public Site(String siteid_, int port_){
+        init(siteid_, port_);
+    }
 
-    public int counter;
-
-    public ArrayList<Meeting> schedule;
-
-    public ArrayList<Pair<String, String>> log;
-
-    public ArrayList<Pair<String, String>> plog;
-
-    public ArrayList<String> T;
-
-    public ArrayList<Integer> timeline;
-
-    public Map<String, Integer> mtoT;
-
-    private void init(String id, int portNum){
+    private void init(String siteid_, int port_){
         this.counter = 0;
-        this.site_id = id;
-        this.port = portNum;
-        this.timeline = new ArrayList<Integer>(Collections.nCopies(48, 0));
+        this.siteid = siteid_;
+        this.port = port_;
+//        this.timeline = new ArrayList<Integer>(Collections.nCopies(48, 0));
 
         char[] chars = new char[3];
         Arrays.fill(chars, '0');
@@ -63,10 +58,5 @@ public class Site {
 
     public void viewLog(){
 
-    }
-
-
-    public Site(String id, int portNum){
-        init(id, portNum);
     }
 }
