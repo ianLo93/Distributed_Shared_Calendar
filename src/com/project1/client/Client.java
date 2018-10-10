@@ -1,4 +1,6 @@
 package com.project1.client;
+import com.project1.server.Message;
+
 import java.io.*;
 import java.net.*;
 
@@ -7,41 +9,102 @@ public class Client {
 
     private DatagramSocket clientSocket;
     private String siteid;
-    private InetAddress addr;
+    private int port;
     private byte[] buf;
 
-    public Client(String hostname) {
+    public Client(String siteid_, int port_) {
         try {
             this.clientSocket = new DatagramSocket();
-            this.addr = InetAddress.getByName("localhost");
-            this.siteid = hostname;
+            this.siteid = siteid_;
+            this.port = port_;
         }
         catch (SocketException s) {
             System.out.println(s);
         }
-        catch (UnknownHostException u) {
-            System.out.println(u);
+    }
+
+    public Message parse_command (String command) {
+        String[] cmds = command.split(" ");
+        Message msg;
+        if (cmds.length < 2 || !cmds[0].equals("%")) {
+            System.out.println("ERROR: Invalid Command");
+            System.out.println("USAGE: % <command> [<meeting_info>]");
+            return null;
+        }
+        if (cmds[1].equals("schedule")) {
+            if (cmds.length != 7) {
+                System.out.println("ERROR: Invalid Meeting Schedule");
+                System.out.println("USAGE: % schedule <name> <day> <start_time> <end_time> <participants>");
+                return null;
+            }
+            msg = new Message(cmds[1], null, null, this.siteid,
+                    cmds[2], cmds[3], cmds[4], cmds[5], cmds[6].split(","));
+            return msg;
+        }
+        else if (cmds[1].equals("cancel")) {
+            if (cmds.length != 3) {
+                System.out.println("ERROR: Invalid Meeting Cancellation");
+                System.out.println("USAGE: % cancle <name>");
+                return null;
+            }
+            msg = new Message(cmds[1], null, null, this.siteid,
+                    cmds[2], null, null, null, null);
+            return msg;
+        }
+        else if (cmds[1].equals("view")) {
+            if (cmds.length != 2) {
+                System.out.println("ERROR: Invalid View Command");
+                System.out.println("USAGE: % view");
+                return null;
+            }
+            msg = new Message(cmds[1], null, null, this.siteid,
+                    null, null, null, null, null);
+            return msg;
+        }
+        else if (cmds[1].equals("myview")) {
+            if (cmds.length != 2) {
+                System.out.println("ERROR: Invalid MyView Command");
+                System.out.println("USAGE: % myview");
+                return null;
+            }
+            msg = new Message(cmds[1], null, null, this.siteid,
+                    null, null, null, null, null);
+            return msg;
+        }
+        else if (cmds[1].equals("log")) {
+            if (cmds.length != 2) {
+                System.out.println("ERROR: Invalid Log Command");
+                System.out.println("USAGE: % log");
+                return null;
+            }
+            msg = new Message(cmds[1], null, null, this.siteid,
+                    null, null, null, null, null);
+            return msg;
+        }
+        else {
+            System.out.println("ERROR: Invalid Command");
+            System.out.println("USAGE: % <command> [<meeting_info>]");
+            return null;
         }
     }
 
-    public String sendMsg(String msg, int port) {
+    public void sendMsg(Message msg, String siteid_, int port_) {
         try {
-            // Convert msg to bytes array
-            buf = msg.getBytes();
-            // Put text into datagram packet and mark the address and port
-            DatagramPacket packet = new DatagramPacket(buf, buf.length, addr, port);
+            // Write object on stream buffer
+            ByteArrayOutputStream byOut = new ByteArrayOutputStream();
+            ObjectOutputStream objOut = new ObjectOutputStream(byOut);
+            objOut.writeObject(msg);
+            buf = byOut.toByteArray();
+
+            // Put obj into datagram packet and mark the address and port
+            InetAddress addr = InetAddress.getByName(siteid_);
+            DatagramPacket packet = new DatagramPacket(buf, buf.length, addr, port_);
+
             // Send packets
             clientSocket.send(packet);
-            // Empty packet
-            packet = new DatagramPacket(buf, buf.length);
-            clientSocket.receive(packet);
-            // Convert datagram packet into string
-            String recvMsg = new String(packet.getData(), 0, packet.getLength());
-            return recvMsg;
         }
         catch (IOException i) {
             System.out.println(i);
-            return "";
         }
     }
 

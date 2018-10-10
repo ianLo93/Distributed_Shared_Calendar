@@ -1,104 +1,112 @@
 package com.project1.server;
 
 
+import com.project1.client.Client;
+
 import java.io.*;
 import java.net.*;
+import java.util.Map;
 
 public class Server extends Thread {
-  private DatagramSocket serverSocket;
-  private Site mySite;
-  private byte[] buf;
-  private boolean running;
-  private String siteid;
-  private int port;
 
-  public Server(String hostname_, int port_){
-    try {
-        this.serverSocket = new DatagramSocket(port);
-        this.siteid = hostname_;
-        this.port = port_;
-        this.mySite = new Site(siteid, port);
+    private DatagramSocket serverSocket;
+    private ByteArrayInputStream byIn;
+    private ObjectInputStream objIn;
+    private Site mySite;
+    private byte[] buf;
+    private boolean running;
+    private String siteid;
+    private int port;
+
+    public Server(String hostname_, int port_) {
+        try {
+            this.serverSocket = new DatagramSocket(port);
+            this.siteid = hostname_;
+            this.port = port_;
+            this.mySite = new Site(siteid, port);
+        } catch (SocketException s) {
+            System.out.println(s);
+        }
     }
-    catch (SocketException s) {
-        System.out.println(s);
+
+    private void exe_cmd(Message recvMsg) {
+        // Get message command
+        String cmd = recvMsg.getMsg();
+
+        if ( recvMsg.getSender().equals(siteid) ) {
+            String day, start, end;
+            String[] participants;
+            if (cmd.equals("schedule")) {
+                participants = recvMsg.getMeeting().getParticipants();
+                day = recvMsg.getMeeting().getDay();
+                start = recvMsg.getMeeting().getStartTime();
+                end = recvMsg.getMeeting().getEndTime();
+                if ( mySite.hasConflict(day, start, end, participants) ) {
+                    System.out.println(
+                            "Unable to schedule meeting " + recvMsg.getMeeting().getName());
+                } else {
+                    // TODO schedule meeting
+                    // TODO update T, schedule, log
+                    // TODO make NP, insert T and NP to message
+                    // TODO send message to participants
+                    Client client = new Client(siteid, port);
+                }
+            } else if (cmd.equals("cancel")) {
+                // TODO check meeting
+                // TODO cancel meeting
+                // TODO update T, schedule, log
+                // TODO make NP, insert T and NP to message
+                // TODO send messages to participants
+            } else if (cmd.equals("view")) {
+                mySite.view(); // Call view() to print calendar
+            } else if (cmd.equals("myview")) {
+                mySite.myView(); // Call myView() to print my schedule
+            } else if (cmd.equals("log")) {
+                mySite.viewLog(); // Call viewLog() to print all logs in my site
+            } else {
+                System.out.println("ERROR: This should not happen");
+            }
+        } else {
+            // TODO: update my site according to NP
+            // TODO: handle conflicts
+        }
     }
-  }
 
-  @Override
-  public void run() {
-      running = true;
+    @Override
+    public void run() {
+        running = true;
 
-      while (running) {
-          try {
-              // Create datagram packet holder and send received msg to buf
-              buf = new byte[1024];
-              DatagramPacket packet = new DatagramPacket(buf, buf.length);
-              serverSocket.receive(packet);
+        while (running) {
+            try {
+                // Create datagram packet holder and send received msg to buf
+                DatagramPacket packet = new DatagramPacket(buf, buf.length);
+                serverSocket.receive(packet);
 
-              // Get packet sender address and port
-              InetAddress addr = packet.getAddress();
-              int port = packet.getPort();
+                // Get packet sender address and port
+                InetAddress addr = packet.getAddress();
+                int port = packet.getPort();
 
-              // Make the same text to be a new datagram packet
-              packet = new DatagramPacket(buf, buf.length, addr, port);
-              String msg = new String(packet.getData());
-              msg = msg.trim();
+                // Get byte data and send to object stream
+                buf = packet.getData();
+                byIn = new ByteArrayInputStream(buf);
+                objIn = new ObjectInputStream(byIn);
 
-              // execute command
-              String [] cmds = msg.split(" ");
+                // Get the object message
+                Message recvMsg;
+                try {
+                    recvMsg = (Message) objIn.readObject();
+                } catch (ClassNotFoundException c) {
+                    System.out.println(c);
+                    continue;
+                }
 
-              if (cmds.length < 2) {
-                  System.out.println("Invalid command");
-                  continue;
-              }
-              else if (cmds[1].equals("schedule")){
-                  if (cmds.length != 7 ) System.out.println("Invalid meeting schedule command");
-                  else if (mySite.checkAvailabilityOfAll(cmds[3], cmds[4], cmds[5], cmds[6])){
-                      // send invitation to all sites.
+                // Execute commands
+                exe_cmd(recvMsg);
 
-                  }
-                  else {
-                      System.out.println("Unable to schedule meeting "+ cmds[2]);
-                  }
-
-              }
-              else if (cmds[1].equals("cancel")){
-                  // check if meeting exists
-
-                  // cancel myself
-
-                  // send cancel to all participants
-              }
-              else if (cmds[1].equals("view")){
-                  mySite.view();
-
-              }
-              else if (cmds[1].equals("myview")){
-                  mySite.myView();
-
-              }
-              else if (cmds[1].equals("log")){
-                  mySite.viewLog();
-              }
-              else {
-                  System.out.println("Invalid command");
-              }
-
-              // End instruction
-              if (msg.equals("end")) {
-                  running = false;
-                  buf = null;
-                  continue;
-              }
-              System.out.println(msg+"a");
-              // If not end, send the text back
-              serverSocket.send(packet);
-              buf = null;
-          }
-          catch (IOException i) {
-              System.out.println(i);
-          }
-      }
-  }
+            } catch (IOException i) {
+                System.out.println(i);
+            }
+        }
+    }
 
 }

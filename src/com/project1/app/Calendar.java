@@ -1,6 +1,7 @@
 package com.project1.app;
 import java.util.*;
 import com.project1.client.Client;
+import com.project1.server.Message;
 import com.project1.server.Server;
 import javafx.util.*;
 
@@ -27,14 +28,14 @@ public class Calendar {
         server.setDaemon(true);
         server.start();
 
-        Client client = new Client(siteid);
+        Client client = new Client(siteid, port);
 
         Scanner sc = new Scanner(System.in);
-        String line = "";
-        while (!line.equals("end")) {
-            line = sc.nextLine();
-            String msg = client.sendMsg(line, port);
-            System.out.println(msg);
+        String command = "";
+        while (!command.equals("end")) {
+            command = sc.nextLine();
+            Message msg = client.parse_command(command);
+            client.sendMsg(msg, siteid, port);
         }
 
         client.close();

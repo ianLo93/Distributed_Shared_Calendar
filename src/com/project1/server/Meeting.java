@@ -21,9 +21,10 @@ public class Meeting {
     public String getDay() { return day; }
     public String getStartTime() { return start; }
     public String getEndTime() { return end; }
+    public String[] getParticipants() { return participants; }
 
     public void printMeeting(){
-        System.out.print(name + " " + day+ " " + start + " " + end);
+        System.out.print(name + " " + day+ " " + start + " " + end + " ");
         for (String p : participants){
             System.out.print(p + ",");
         }
