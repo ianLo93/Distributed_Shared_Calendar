@@ -38,46 +38,40 @@ public class Server extends Thread {
         if ( recvMsg.getSender().equals(siteid) ) {
             String day, start, end;
             String[] participants;
-            if (cmd.equals("schedule") || cmd.equals("cancel")) {
-
-                if (cmd.equals("schedule")) {
-                    // Get meeting time info
-                    participants = recvMsg.getMeeting().getParticipants();
-                    day = recvMsg.getMeeting().getDay();
-                    start = recvMsg.getMeeting().getStartTime();
-                    end = recvMsg.getMeeting().getEndTime();
-                    // Time conflicts
-                    if (mySite.hasConflict(day, start, end, participants)) {
-                        System.out.println(
-                                "Unable to schedule meeting " + recvMsg.getMeeting().getName());
-                        return;
-                    } else {
-                        // Update T, schedule, log
-                        mySite.addMeeting(recvMsg.getMeeting());
-                        // Send to participants
-                        mySite.sendEvent(recvMsg);
-                    }
+            if (cmd.equals("schedule")) {
+                // Get meeting time info
+                participants = recvMsg.getMeeting().getParticipants();
+                day = recvMsg.getMeeting().getDay();
+                start = recvMsg.getMeeting().getStartTime();
+                end = recvMsg.getMeeting().getEndTime();
+                // Time conflicts
+                if (mySite.hasConflict(day, start, end, participants)) {
+                    System.out.println(
+                            "Unable to schedule meeting " + recvMsg.getMeeting().getName());
+                } else {
+                    // Update T, schedule, log
+                    mySite.addMeeting(recvMsg.getMeeting());
+                    // Send to participants
+                    mySite.sendEvent(recvMsg);
                 }
-                else {
-                    Meeting m = mySite.getMeeting(recvMsg.getMeeting().getName());
-                    if (m == null) return; // The meeting does not exist, do nothing
-                    else { // Remove the meeting and send to participants
-                        recvMsg.setMeeting(m);
-                        // Update T, schedule, log
-                        mySite.rmMeeting(m);
-                        // Send to participants
-                        mySite.sendEvent(recvMsg);
-                    }
+            } else if (cmd.equals("cancel")) {
+                Meeting m = mySite.getMeeting(recvMsg.getMeeting().getName());
+                // Remove meeting if it exists
+                if (m != null) {
+                    recvMsg.setMeeting(m);
+                    // Update T, schedule, log
+                    mySite.rmMeeting(m);
+                    // Send to participants
+                    mySite.sendEvent(recvMsg);
                 }
-            }
-            if (cmd.equals("view")) {
+            } else if (cmd.equals("view")) {
                 mySite.view(); // Call view() to print calendar
-            }
-            if (cmd.equals("myview")) {
+            } else if (cmd.equals("myview")) {
                 mySite.myView(); // Call myView() to print my schedule
-            }
-            if (cmd.equals("log")) {
+            } else if (cmd.equals("log")) {
                 mySite.viewLog(); // Call viewLog() to print all logs in my site
+            } else {
+                System.out.println("ERROR: This should not happen");
             }
         } else {
             // TODO: update my site according to NP
@@ -120,6 +114,7 @@ public class Server extends Thread {
 
                 // Execute commands
                 exe_cmd(recvMsg);
+
                 // Release buffer
                 buf = null;
             } catch (IOException i) {
