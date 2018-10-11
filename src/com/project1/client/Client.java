@@ -1,7 +1,11 @@
 package com.project1.client;
 
+import com.project1.app.Calendar;
+import com.sun.deploy.util.ArrayUtil;
+
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
 
 
 public class Client {
@@ -39,8 +43,13 @@ public class Client {
                         "<end_time> <participants>");
                 return null;
             }
+            String[] participants = valid_users(cmds[6].split(","));
+            if (participants.length == 0) {
+                System.out.println("Schedule ERROR: No Valid User Provided");
+                return null;
+            }
             return new Message(cmds[1], null, null, this.siteid,
-                    cmds[2], cmds[3], cmds[4], cmds[5], cmds[6].split(","));
+                    cmds[2], cmds[3], cmds[4], cmds[5], participants);
         }
         else if (cmds[1].equals("cancel")) {
             if (cmds.length != 3) {
@@ -119,5 +128,13 @@ public class Client {
 
     public void close() {
         clientSocket.close();
+    }
+
+    private String[] valid_users(String[] participants) {
+        ArrayList<String> valid_part = new ArrayList<>();
+        for (String p : participants) {
+            if (Calendar.phonebook.containsKey(p)) valid_part.add(p);
+        }
+        return (String[]) valid_part.toArray();
     }
 }

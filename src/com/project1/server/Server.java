@@ -74,12 +74,12 @@ public class Server extends Thread {
         } else {
             // update my site according to NP
 
-            Event [] NP = recvMsg.getNP();
-            Event [] NE = mySite.makeNE(NP);
-            // update Meetings
-            mySite.UpdateSchedule(NE);
-            mySite.updateT(recvMsg);
-            mySite.updatePL(NE);
+//            Event [] NP = recvMsg.getNP();
+//            Event [] NE = mySite.makeNE(NP);
+//            // update Meetings
+//            mySite.UpdateSchedule(NE);
+//            mySite.updateT(recvMsg);
+//            mySite.updatePL(NE);
 
 
             // TODO: handle conflicts

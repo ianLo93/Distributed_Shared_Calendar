@@ -180,21 +180,14 @@ public class Site {
     }
 
 
-    public Event [] makeNE(Event [] NP){
-        ArrayList<Event> ne = new ArrayList<Event>();
+    public ArrayList<Event> makeNE(ArrayList<Event> NP){
+        ArrayList<Event> NE = new ArrayList<Event>();
         for (Event e : NP){
             if (!hasRec(e, this.siteid)){
-                ne.add(e);
+                NE.add(e);
             }
         }
-        Object NE = ne.toArray();
-        return (Event[]) NE;
-//        int i = 0;
-//        for (Event e : ne){
-//            NE[i] = e;
-//            i++;
-//        }
-//        return NE;
+        return NE;
 
     }
 
