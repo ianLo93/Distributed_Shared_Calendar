@@ -1,6 +1,7 @@
 package com.project1.server;
 
 
+import com.project1.app.Calendar;
 import com.project1.client.Client;
 import com.project1.client.Message;
 
@@ -37,35 +38,56 @@ public class Server extends Thread {
         if ( recvMsg.getSender().equals(siteid) ) {
             String day, start, end;
             String[] participants;
-            if (cmd.equals("schedule")) {
-                participants = recvMsg.getMeeting().getParticipants();
-                day = recvMsg.getMeeting().getDay();
-                start = recvMsg.getMeeting().getStartTime();
-                end = recvMsg.getMeeting().getEndTime();
-                if ( mySite.hasConflict(day, start, end, participants) ) {
-                    System.out.println(
-                            "Unable to schedule meeting " + recvMsg.getMeeting().getName());
-                } else {
-                    // TODO schedule meeting
-                    // TODO update T, schedule, log
-                    // TODO make NP, insert T and NP to message
-                    // TODO client send message to participants
-                     Client client = new Client(siteid, port);
+            if (cmd.equals("schedule") || cmd.equals("cancel")) {
+                // Create a client to send msg
+                Client client = new Client(siteid, port);
+                if (cmd.equals("schedule")) {
+                    // Get meeting time info
+                    participants = recvMsg.getMeeting().getParticipants();
+                    day = recvMsg.getMeeting().getDay();
+                    start = recvMsg.getMeeting().getStartTime();
+                    end = recvMsg.getMeeting().getEndTime();
+                    // Time conflicts
+                    if (mySite.hasConflict(day, start, end, participants)) {
+                        System.out.println(
+                                "Unable to schedule meeting " + recvMsg.getMeeting().getName());
+                        return;
+                    } else {
+                        // Update T, schedule, log
+                        mySite.addMeeting(recvMsg.getMeeting());
+                    }
                 }
-            } else if (cmd.equals("cancel")) {
-                // TODO check meeting
-                // TODO cancel meeting
-                // TODO update T, schedule, log
-                // TODO make NP, insert T and NP to message
-                // TODO send messages to participants
-            } else if (cmd.equals("view")) {
+                else {
+                    Meeting m = mySite.getMeeting(recvMsg.getMeeting().getName());
+                    if (m == null) {
+                        System.out.println("ERROR: Meeting "+recvMsg.getMeeting().getName()
+                                + " doesn't exist.");
+                        return;
+                    }
+                    // Update T, schedule, log
+                    mySite.rmMeeting(m);
+                    participants = m.getParticipants();
+                }
+                // Insert T to message
+                recvMsg.setT(mySite.getT());
+                // Client send message to participants
+                for (String p: participants) {
+                    // Make NP and insert to message
+                    Event[] NP = mySite.makeNP(p);
+                    recvMsg.setNP(NP);
+                    int port = Calendar.phonebook.get(p).getValue();
+                    client.sendMsg(recvMsg, p, port);
+                }
+                client.close();
+            }
+            if (cmd.equals("view")) {
                 mySite.view(); // Call view() to print calendar
-            } else if (cmd.equals("myview")) {
+            }
+            if (cmd.equals("myview")) {
                 mySite.myView(); // Call myView() to print my schedule
-            } else if (cmd.equals("log")) {
+            }
+            if (cmd.equals("log")) {
                 mySite.viewLog(); // Call viewLog() to print all logs in my site
-            } else {
-                System.out.println("ERROR: This should not happen");
             }
         } else {
             // TODO: update my site according to NP
