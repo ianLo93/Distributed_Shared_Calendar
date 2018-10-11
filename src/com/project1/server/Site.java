@@ -13,9 +13,9 @@ public class Site {
     private String siteid;
     private int port;
     private int counter;
-    private List<Meeting> schedule;
-    private List<Event> log;
-    private List<Event> plog;
+    private ArrayList<Meeting> schedule;
+    private ArrayList<Event> log;
+    private ArrayList<Event> plog;
     private int[][] T;
 
     @SuppressWarnings("unchecked")
@@ -117,7 +117,7 @@ public class Site {
         // Client send message to participants
         for (String p: participants) {
             // Make NP and insert to message
-            List<Event> NP = makeNP(p);
+            ArrayList<Event> NP = makeNP(p);
             msg.setNP(NP);
             int port = Calendar.phonebook.get(p).getValue();
             client.sendMsg(msg, p, port);
@@ -132,8 +132,8 @@ public class Site {
         return null;
     }
 
-    public List<Event> makeNP(String sitej) {
-        List<Event> NP = new ArrayList<>();
+    public ArrayList<Event> makeNP(String sitej) {
+        ArrayList<Event> NP = new ArrayList<>();
         for (Event e: plog) {
             if (!hasRec(e, sitej)) NP.add(e);
         }
