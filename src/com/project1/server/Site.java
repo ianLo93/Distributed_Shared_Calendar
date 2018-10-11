@@ -1,6 +1,7 @@
 package com.project1.server;
 
 import com.project1.app.Calendar;
+import com.project1.client.Message;
 import javafx.util.Pair;
 
 import java.io.*;
@@ -89,11 +90,15 @@ public class Site {
     public void addMeeting(Meeting m) {
         counter = counter + 1;
         schedule.add(m);
-        int i = Calendar.phonebook.get(siteid).getKey();
-        T[i][i] = counter;
         Event e = new Event("create", counter, siteid, m);
+        updateT();
         log.add(e);
         plog.add(e);
+    }
+
+    public void updateT() {
+        int i = Calendar.phonebook.get(siteid).getKey();
+        T[i][i] = counter;
     }
 
     public void rmMeeting(Meeting m) {
@@ -164,7 +169,6 @@ public class Site {
     private boolean hasRec(Event e, String sitej) {
         int k = Calendar.phonebook.get(e.getSite()).getKey();
         int j = Calendar.phonebook.get(sitej).getKey();
-        if (T[j][k] > e.getTime()) return true;
-        else return false;
+        return T[j][k] >= e.getTime();
     }
 }
