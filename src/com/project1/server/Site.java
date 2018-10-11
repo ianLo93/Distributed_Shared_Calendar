@@ -117,7 +117,7 @@ public class Site {
         // Client send message to participants
         for (String p: participants) {
             // Make NP and insert to message
-            Event[] NP = makeNP(p);
+            List<Event> NP = makeNP(p);
             msg.setNP(NP);
             int port = Calendar.phonebook.get(p).getValue();
             client.sendMsg(msg, p, port);
@@ -132,13 +132,12 @@ public class Site {
         return null;
     }
 
-    public Event[] makeNP(String sitej) {
-        ArrayList<Event> np = new ArrayList<>();
+    public List<Event> makeNP(String sitej) {
+        List<Event> NP = new ArrayList<>();
         for (Event e: plog) {
-            if (!hasRec(e, sitej)) np.add(e);
+            if (!hasRec(e, sitej)) NP.add(e);
         }
-        Object NP = np.toArray();
-        return (Event[]) NP;
+        return NP;
     }
 
 
@@ -181,8 +180,13 @@ public class Site {
     }
 
     private boolean hasRec(Event e, String sitej) {
-        int k = Calendar.phonebook.get(e.getSite()).getKey();
-        int j = Calendar.phonebook.get(sitej).getKey();
-        return T[j][k] >= e.getTime();
+        try {
+            int k = Calendar.phonebook.get(e.getSite()).getKey();
+            int j = Calendar.phonebook.get(sitej).getKey();
+            return T[j][k] >= e.getTime();
+        } catch (NullPointerException n) {
+            System.out.println("ERROR: No such user");
+            return true;
+        }
     }
 }

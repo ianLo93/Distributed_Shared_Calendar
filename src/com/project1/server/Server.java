@@ -1,8 +1,5 @@
 package com.project1.server;
 
-
-import com.project1.app.Calendar;
-import com.project1.client.Client;
 import com.project1.client.Message;
 
 import java.io.*;
