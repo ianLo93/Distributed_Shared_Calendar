@@ -1,8 +1,8 @@
 package com.project1.server;
 
 import com.project1.app.Calendar;
+import com.project1.client.Client;
 import com.project1.client.Message;
-import javafx.util.Pair;
 
 import java.io.*;
 import java.util.*;
@@ -37,9 +37,6 @@ public class Site {
             init(siteid_, port_);
         }
     }
-
-    public int[][] getT() { return T; }
-
     public void view() {
         Collections.sort(schedule, Meeting.timeComparator);
         for (Meeting m : schedule) System.out.println(m);
@@ -109,6 +106,23 @@ public class Site {
         Event e = new Event("cancel", counter, siteid, m);
         log.add(e);
         plog.add(e);
+    }
+
+    public void sendEvent(Message msg) {
+        // Create a client to send msg
+        Client client = new Client(siteid, port);
+        String[] participants = msg.getMeeting().getParticipants();
+        // Insert T to message
+        msg.setT(T);
+        // Client send message to participants
+        for (String p: participants) {
+            // Make NP and insert to message
+            Event[] NP = makeNP(p);
+            msg.setNP(NP);
+            int port = Calendar.phonebook.get(p).getValue();
+            client.sendMsg(msg, p, port);
+        }
+        client.close();
     }
 
     public Meeting getMeeting(String name_) {

@@ -30,4 +30,5 @@ public class Message implements Serializable {
 
     public void setNP(Event[] NP_) { this.NP = NP_; }
     public void setT(int[][] T_) { this.T = T_; }
+    public void setMeeting(Meeting m_) { this.meeting= m_; }
 }

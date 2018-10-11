@@ -39,8 +39,7 @@ public class Server extends Thread {
             String day, start, end;
             String[] participants;
             if (cmd.equals("schedule") || cmd.equals("cancel")) {
-                // Create a client to send msg
-                Client client = new Client(siteid, port);
+
                 if (cmd.equals("schedule")) {
                     // Get meeting time info
                     participants = recvMsg.getMeeting().getParticipants();
@@ -55,30 +54,21 @@ public class Server extends Thread {
                     } else {
                         // Update T, schedule, log
                         mySite.addMeeting(recvMsg.getMeeting());
+                        // Send to participants
+                        mySite.sendEvent(recvMsg);
                     }
                 }
                 else {
                     Meeting m = mySite.getMeeting(recvMsg.getMeeting().getName());
-                    if (m == null) {
-                        System.out.println("ERROR: Meeting "+recvMsg.getMeeting().getName()
-                                + " doesn't exist.");
-                        return;
+                    if (m == null) return; // The meeting does not exist, do nothing
+                    else { // Remove the meeting and send to participants
+                        recvMsg.setMeeting(m);
+                        // Update T, schedule, log
+                        mySite.rmMeeting(m);
+                        // Send to participants
+                        mySite.sendEvent(recvMsg);
                     }
-                    // Update T, schedule, log
-                    mySite.rmMeeting(m);
-                    participants = m.getParticipants();
                 }
-                // Insert T to message
-                recvMsg.setT(mySite.getT());
-                // Client send message to participants
-                for (String p: participants) {
-                    // Make NP and insert to message
-                    Event[] NP = mySite.makeNP(p);
-                    recvMsg.setNP(NP);
-                    int port = Calendar.phonebook.get(p).getValue();
-                    client.sendMsg(recvMsg, p, port);
-                }
-                client.close();
             }
             if (cmd.equals("view")) {
                 mySite.view(); // Call view() to print calendar
