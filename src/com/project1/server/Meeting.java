@@ -1,6 +1,7 @@
 package com.project1.server;
 
 import java.io.*;
+import java.util.Comparator;
 
 public class Meeting implements Serializable {
 
@@ -23,6 +24,33 @@ public class Meeting implements Serializable {
     public String getStartTime() { return start; }
     public String getEndTime() { return end; }
     public String[] getParticipants() { return participants; }
+
+    public static Comparator<Meeting> timeComparator = new Comparator<Meeting>() {
+        @Override
+        public int compare(Meeting m1, Meeting m2) {
+            int lex1 = m1.getDay().compareTo(m2.getDay());
+            if (lex1 != 0) return lex1;
+            int lex2 = m1.getStartTime().compareTo(m2.getStartTime());
+            if (lex2 != 0) return lex2;
+            return m1.getName().compareTo(m2.getName());
+        }
+    };
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        final Meeting other = (Meeting) obj;
+        if (!this.name.equals(other.name)) return false;
+        else return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 89*hash + (this.name != null ? name.hashCode() : 0);
+        return hash;
+    }
 
     @Override
     public String toString(){

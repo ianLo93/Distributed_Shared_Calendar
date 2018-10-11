@@ -1,7 +1,5 @@
 package com.project1.server;
 
-
-import com.project1.client.Client;
 import com.project1.client.Message;
 
 import java.io.*;
@@ -39,26 +37,31 @@ public class Server extends Thread {
             String day, start, end;
             String[] participants;
             if (cmd.equals("schedule")) {
+                // Get meeting time info
                 participants = recvMsg.getMeeting().getParticipants();
                 day = recvMsg.getMeeting().getDay();
                 start = recvMsg.getMeeting().getStartTime();
                 end = recvMsg.getMeeting().getEndTime();
-                if ( mySite.hasConflict(day, start, end, participants) ) {
+                // Time conflicts
+                if (mySite.hasConflict(day, start, end, participants)) {
                     System.out.println(
                             "Unable to schedule meeting " + recvMsg.getMeeting().getName());
                 } else {
-                    // TODO schedule meeting
-                    // TODO update T, schedule, log
-                    // TODO make NP, insert T and NP to message
-                    // TODO client send message to participants
-                     Client client = new Client(siteid, port);
+                    // Update T, schedule, log
+                    mySite.addMeeting(recvMsg.getMeeting());
+                    // Send to participants
+                    mySite.sendEvent(recvMsg);
                 }
             } else if (cmd.equals("cancel")) {
-                // TODO check meeting
-                // TODO cancel meeting
-                // TODO update T, schedule, log
-                // TODO make NP, insert T and NP to message
-                // TODO send messages to participants
+                Meeting m = mySite.getMeeting(recvMsg.getMeeting().getName());
+                // Remove meeting if it exists
+                if (m != null) {
+                    recvMsg.setMeeting(m);
+                    // Update T, schedule, log
+                    mySite.rmMeeting(m);
+                    // Send to participants
+                    mySite.sendEvent(recvMsg);
+                }
             } else if (cmd.equals("view")) {
                 mySite.view(); // Call view() to print calendar
             } else if (cmd.equals("myview")) {
@@ -120,6 +123,7 @@ public class Server extends Thread {
 
                 // Execute commands
                 exe_cmd(recvMsg);
+
                 // Release buffer
                 buf = null;
             } catch (IOException i) {
