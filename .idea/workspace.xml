@@ -1,25 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="e9b7bc3c-7854-4550-8d87-65cdb2275b7a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/project1/server/MeetingCompare.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+    <list default="true" id="c4425f5d-63e1-443a-87eb-3fce492d3ae9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Distributed_Shared_Calendar/com/project1/app/Calendar.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Distributed_Shared_Calendar/com/project1/client/Client.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Distributed_Shared_Calendar/com/project1/client/Message.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Distributed_Shared_Calendar/com/project1/server/Event.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Distributed_Shared_Calendar/com/project1/server/Meeting.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Distributed_Shared_Calendar/com/project1/server/Server.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Distributed_Shared_Calendar/com/project1/server/Site.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/project1/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/project1/client/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/project1/client/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/project1/client/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/project1/server/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/project1/server/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/project1/server/Meeting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/project1/server/Meeting.java" afterDir="false" />
-=======
-    <list default="true" id="30bffeb1-760d-429a-8f8b-8689fd9199ef" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/com/project1/client/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/project1/client/Message.java" afterDir="false" />
->>>>>>> 0a8c0c2679d90f58bb29fa896bd178cdbcf10536
       <change beforePath="$PROJECT_DIR$/src/com/project1/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/project1/server/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/project1/server/Site.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/project1/server/Site.java" afterDir="false" />
     </list>
@@ -31,157 +16,49 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FUSProjectUsageTrigger">
-    <session id="-63930642">
+    <session id="2098291642">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-<<<<<<< HEAD
-          <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.10" value="1" />
           <entry key="project.opened" value="1" />
-=======
-          <entry key="project.closed" value="1" />
-          <entry key="project.open.time.18" value="1" />
-          <entry key="project.open.time.19" value="1" />
-          <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="3" />
->>>>>>> 0a8c0c2679d90f58bb29fa896bd178cdbcf10536
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="10" />
+          <entry key="java" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="10" />
+          <entry key="JAVA" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-<<<<<<< HEAD
-          <entry key="java" value="2810" />
-=======
-          <entry key="dummy" value="16" />
-          <entry key="java" value="15084" />
->>>>>>> 0a8c0c2679d90f58bb29fa896bd178cdbcf10536
+          <entry key="java" value="520" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-<<<<<<< HEAD
-          <entry key="JAVA" value="2810" />
-=======
-          <entry key="JAVA" value="15084" />
-          <entry key="PLAIN_TEXT" value="16" />
->>>>>>> 0a8c0c2679d90f58bb29fa896bd178cdbcf10536
+          <entry key="JAVA" value="520" />
         </counts>
       </usages-collector>
-      <usages-collector id="statistics.vcs.git.usages" />
       <usages-collector id="statistics.js.language.service.starts" />
+      <usages-collector id="statistics.vcs.git.usages" />
       <usages-collector id="statistics.spring.boot.run.usages" />
       <usages-collector id="statistics.spring.boot.mvc.usages" />
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/project1/server/Server.java">
-          <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-            <state relative-caret-position="469">
-              <caret line="82" column="29" selection-start-line="82" selection-start-column="29" selection-end-line="82" selection-end-column="29" />
-=======
-            <state relative-caret-position="-231">
-              <caret line="17" column="9" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
->>>>>>> 0a8c0c2679d90f58bb29fa896bd178cdbcf10536
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/project1/client/Client.java">
-          <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-            <state relative-caret-position="-532">
-              <caret line="58" column="13" lean-forward="true" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
-=======
-            <state relative-caret-position="-25">
-              <caret line="119" column="22" selection-start-line="119" selection-start-column="22" selection-end-line="119" selection-end-column="22" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
->>>>>>> 0a8c0c2679d90f58bb29fa896bd178cdbcf10536
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/project1/app/Calendar.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="37" column="14" selection-start-line="37" selection-start-column="14" selection-end-line="37" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/project1/server/Site.java">
           <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-            <state relative-caret-position="285">
-              <caret line="240" column="38" lean-forward="true" selection-start-line="240" selection-start-column="38" selection-end-line="240" selection-end-column="38" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3998#4005#0" expanded="true" />
-                <element signature="e#6109#6116#0" expanded="true" />
-=======
-            <state>
-              <caret line="29" column="8" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
-              <folding>
-                <element signature="imports" expanded="true" />
->>>>>>> 0a8c0c2679d90f58bb29fa896bd178cdbcf10536
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/project1/server/MeetingCompare.java">
-          <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-            <state relative-caret-position="180">
-              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-              <folding>
-                <element signature="e#170#171#0" expanded="true" />
-                <element signature="e#221#222#0" expanded="true" />
-=======
-            <state relative-caret-position="441">
-              <caret line="57" column="32" selection-start-line="57" selection-start-column="32" selection-end-line="57" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <marker date="1539270125190" expanded="true" signature="169:4283" ph="..." />
->>>>>>> 0a8c0c2679d90f58bb29fa896bd178cdbcf10536
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/project1/server/Meeting.java">
-          <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-            <state relative-caret-position="542">
-              <caret line="38" selection-start-line="38" selection-end-line="38" />
-=======
-            <state relative-caret-position="483">
-              <caret line="25" column="42" lean-forward="true" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="42" />
+            <state relative-caret-position="378">
+              <caret line="107" column="20" lean-forward="true" selection-start-line="104" selection-start-column="8" selection-end-line="107" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
->>>>>>> 0a8c0c2679d90f58bb29fa896bd178cdbcf10536
             </state>
           </provider>
         </entry>
@@ -189,50 +66,52 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/project1/client/Message.java">
           <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-            <state relative-caret-position="486">
-              <caret line="30" column="48" lean-forward="true" selection-start-line="30" selection-start-column="48" selection-end-line="30" selection-end-column="48" />
-=======
-            <state relative-caret-position="399">
-              <caret line="22" selection-start-line="22" selection-end-line="22" />
->>>>>>> 0a8c0c2679d90f58bb29fa896bd178cdbcf10536
+            <state relative-caret-position="462">
+              <caret line="22" column="33" lean-forward="true" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/project1/server/Event.java">
+        <entry file="file://$PROJECT_DIR$/src/com/project1/client/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-            <state relative-caret-position="198">
-              <caret line="11" column="49" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="49" />
-=======
-            <state relative-caret-position="105">
-              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
->>>>>>> 0a8c0c2679d90f58bb29fa896bd178cdbcf10536
+            <state relative-caret-position="332">
+              <caret line="49" column="13" lean-forward="true" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/project1/server/Server.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="546">
+              <caret line="81" column="34" lean-forward="true" selection-start-line="81" selection-start-column="34" selection-end-line="81" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/project1/server/MeetingCompare.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="147">
+              <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/project1/server/Meeting.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="34" column="16" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>message</find>
-      <find>getK</find>
-      <find>get</find>
-      <find>NP</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -240,24 +119,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-<<<<<<< HEAD
         <option value="$PROJECT_DIR$/src/com/project1/client/Message.java" />
-=======
-        <option value="$PROJECT_DIR$/src/com/project1/app/MyApp.java" />
-        <option value="$PROJECT_DIR$/src/com/project1/app/Message.java" />
-        <option value="$PROJECT_DIR$/src/com/project1/server/Message.java" />
-        <option value="$PROJECT_DIR$/src/com/project1/app/Calendar.java" />
         <option value="$PROJECT_DIR$/src/com/project1/client/Client.java" />
->>>>>>> 0a8c0c2679d90f58bb29fa896bd178cdbcf10536
-        <option value="$PROJECT_DIR$/src/com/project1/server/Event.java" />
-        <option value="$PROJECT_DIR$/src/com/project1/server/Meeting.java" />
         <option value="$PROJECT_DIR$/src/com/project1/server/Server.java" />
-<<<<<<< HEAD
-        <option value="$PROJECT_DIR$/src/com/project1/server/Meeting.java" />
-        <option value="$PROJECT_DIR$/src/com/project1/server/MeetingCompare.java" />
-=======
-        <option value="$PROJECT_DIR$/src/com/project1/client/Message.java" />
->>>>>>> 0a8c0c2679d90f58bb29fa896bd178cdbcf10536
         <option value="$PROJECT_DIR$/src/com/project1/server/Site.java" />
       </list>
     </option>
@@ -269,16 +133,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-<<<<<<< HEAD
-    <option name="y" value="23" />
-    <option name="width" value="1388" />
-    <option name="height" value="877" />
-=======
     <option name="x" value="-22" />
     <option name="y" value="104" />
     <option name="width" value="2800" />
     <option name="height" value="1760" />
->>>>>>> 0a8c0c2679d90f58bb29fa896bd178cdbcf10536
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -287,7 +145,6 @@
     <panes>
       <pane id="Scope" />
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -305,13 +162,6 @@
               <item name="Distributed_Shared_Calendar" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="project1" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Distributed_Shared_Calendar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Distributed_Shared_Calendar" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="project1" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Distributed_Shared_Calendar" type="b2602c69:ProjectViewProjectNode" />
@@ -336,17 +186,9 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-<<<<<<< HEAD
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539286646248" />
-=======
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539272178311" />
->>>>>>> 0a8c0c2679d90f58bb29fa896bd178cdbcf10536
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539290730748" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -360,117 +202,33 @@
       </list>
     </option>
   </component>
-<<<<<<< HEAD
-=======
-  <component name="RunManager" selected="Application.Calendar">
-    <configuration name="Calendar" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.project1.app.Calendar" />
-      <module name="Distributed_Shared_Calendar" />
-      <option name="PROGRAM_PARAMETERS" value="localhost" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.project1.app.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Event" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.project1.server.Event" />
-      <module name="Distributed_Shared_Calendar" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.project1.app.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Meeting" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.project1.server.Meeting" />
-      <module name="Distributed_Shared_Calendar" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.project1.app.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Site" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.project1.server.Site" />
-      <module name="Distributed_Shared_Calendar" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.project1.server.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <list>
-      <item itemvalue="Application.Meeting" />
-      <item itemvalue="Application.Event" />
-      <item itemvalue="Application.Calendar" />
-      <item itemvalue="Application.Site" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Calendar" />
-        <item itemvalue="Application.Site" />
-        <item itemvalue="Application.Event" />
-        <item itemvalue="Application.Meeting" />
-      </list>
-    </recent_temporary>
-  </component>
->>>>>>> 0a8c0c2679d90f58bb29fa896bd178cdbcf10536
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e9b7bc3c-7854-4550-8d87-65cdb2275b7a" name="Default Changelist" comment="" />
-      <created>1539221817152</created>
+      <changelist id="c4425f5d-63e1-443a-87eb-3fce492d3ae9" name="Default Changelist" comment="" />
+      <created>1539288133135</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-<<<<<<< HEAD
-      <updated>1539221817152</updated>
-      <workItem from="1539221818803" duration="11064000" />
-=======
-      <updated>1539040412947</updated>
-      <workItem from="1539040418726" duration="13359000" />
-      <workItem from="1539142906236" duration="51282000" />
-      <workItem from="1539267026942" duration="5050000" />
->>>>>>> 0a8c0c2679d90f58bb29fa896bd178cdbcf10536
+      <updated>1539288133135</updated>
+      <workItem from="1539288139762" duration="3889000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-<<<<<<< HEAD
-    <option name="totallyTimeSpent" value="11064000" />
-=======
-    <option name="totallyTimeSpent" value="69691000" />
->>>>>>> 0a8c0c2679d90f58bb29fa896bd178cdbcf10536
+    <option name="totallyTimeSpent" value="3889000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1388" height="877" extended-state="6" />
+    <frame x="-6" y="-6" width="1513" height="973" extended-state="6" />
     <editor active="true" />
     <layout>
-<<<<<<< HEAD
       <window_info id="Image Layers" />
       <window_info id="Designer" />
       <window_info id="UI Designer" />
       <window_info id="Capture Tool" />
       <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15750371" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24948454" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" />
@@ -489,27 +247,6 @@
       <window_info anchor="right" id="Palette&#9;" />
       <window_info anchor="right" id="Database" />
       <window_info anchor="right" id="Maven Projects" />
-=======
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2563574" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Designer" order="3" />
-      <window_info id="UI Designer" order="4" />
-      <window_info id="Capture Tool" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="0" weight="0.32897863" />
-      <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Find" order="2" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.3135392" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="7" />
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32897863" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32897863" />
->>>>>>> 0a8c0c2679d90f58bb29fa896bd178cdbcf10536
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -522,123 +259,50 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/project1/client/Client.java">
+    <entry file="file://$PROJECT_DIR$/src/com/project1/server/MeetingCompare.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-532">
-          <caret line="58" column="13" lean-forward="true" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/src/com/project1/server/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="82" column="29" selection-start-line="82" selection-start-column="29" selection-end-line="82" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/project1/client/Message.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="30" column="48" lean-forward="true" selection-start-line="30" selection-start-column="48" selection-end-line="30" selection-end-column="48" />
-=======
-    <entry file="file://$PROJECT_DIR$/src/com/project1/client/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="29" column="8" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/project1/app/Calendar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-231">
-          <caret line="17" column="9" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
->>>>>>> 0a8c0c2679d90f58bb29fa896bd178cdbcf10536
+        <state relative-caret-position="147">
+          <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/project1/server/Meeting.java">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-        <state relative-caret-position="542">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
+        <state relative-caret-position="378">
+          <caret line="34" column="16" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/project1/server/MeetingCompare.java">
+    <entry file="file://$PROJECT_DIR$/src/com/project1/client/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-=======
-        <state relative-caret-position="105">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
->>>>>>> 0a8c0c2679d90f58bb29fa896bd178cdbcf10536
-          <folding>
-            <element signature="e#170#171#0" expanded="true" />
-            <element signature="e#221#222#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="332">
+          <caret line="49" column="13" lean-forward="true" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/project1/app/Calendar.java">
+    <entry file="file://$PROJECT_DIR$/src/com/project1/server/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-        <state relative-caret-position="594">
-          <caret line="37" column="14" selection-start-line="37" selection-start-column="14" selection-end-line="37" selection-end-column="14" />
-=======
-        <state relative-caret-position="399">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="546">
+          <caret line="81" column="34" lean-forward="true" selection-start-line="81" selection-start-column="34" selection-end-line="81" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/project1/client/Message.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="25" column="42" lean-forward="true" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="42" />
+        <state relative-caret-position="462">
+          <caret line="22" column="33" lean-forward="true" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
->>>>>>> 0a8c0c2679d90f58bb29fa896bd178cdbcf10536
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/project1/server/Event.java">
-      <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-        <state relative-caret-position="198">
-          <caret line="11" column="49" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="49" />
-=======
-        <state relative-caret-position="441">
-          <caret line="57" column="32" selection-start-line="57" selection-start-column="32" selection-end-line="57" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1539270125190" expanded="true" signature="169:4283" ph="..." />
-          </folding>
->>>>>>> 0a8c0c2679d90f58bb29fa896bd178cdbcf10536
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/project1/server/Site.java">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-        <state relative-caret-position="285">
-          <caret line="240" column="38" lean-forward="true" selection-start-line="240" selection-start-column="38" selection-end-line="240" selection-end-column="38" />
+        <state relative-caret-position="378">
+          <caret line="107" column="20" lean-forward="true" selection-start-line="104" selection-start-column="8" selection-end-line="107" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3998#4005#0" expanded="true" />
-            <element signature="e#6109#6116#0" expanded="true" />
-=======
-        <state relative-caret-position="-25">
-          <caret line="119" column="22" selection-start-line="119" selection-start-column="22" selection-end-line="119" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
->>>>>>> 0a8c0c2679d90f58bb29fa896bd178cdbcf10536
           </folding>
         </state>
       </provider>
@@ -646,54 +310,9 @@
   </component>
   <component name="masterDetails">
     <states>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>10</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
       <state key="ProjectJDKs.UI">
         <settings>
-          <last-edited>10</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ScopeChooserConfigurable.UI">
-        <settings>
+          <last-edited>1.8</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
