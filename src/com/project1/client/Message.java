@@ -28,4 +28,6 @@ public class Message implements Serializable {
     public String getSender() { return sender; }
     public Meeting getMeeting() { return meeting; }
 
+    public void setNP(Event[] NP_) { NP = NP_; }
+
 }

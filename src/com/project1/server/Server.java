@@ -6,6 +6,7 @@ import com.project1.client.Message;
 
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
 //import java.util.*;
 
 public class Server extends Thread {
@@ -68,8 +69,19 @@ public class Server extends Thread {
                 System.out.println("ERROR: This should not happen");
             }
         } else {
-            // TODO: update my site according to NP
+            // update my site according to NP
+
+            Event [] NP = recvMsg.getNP();
+            Event [] NE = mySite.makeNE(NP);
+            // update Meetings
+            mySite.UpdateSchedule(NE);
+            mySite.updateT(recvMsg);
+            mySite.updatePL(NE);
+
+
             // TODO: handle conflicts
+            // check conflict
+
         }
     }
 

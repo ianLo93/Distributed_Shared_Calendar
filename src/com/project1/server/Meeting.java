@@ -35,6 +35,9 @@ public class Meeting implements Serializable {
         return m.toString();
     }
 
+
+
+
 //    public static void main(String[] args) {
 //        String[] p = {"localhost"};
 //        Meeting m = new Meeting("abs", "10/9/2018", "8:00", "13:30", p);

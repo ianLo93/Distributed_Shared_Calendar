@@ -6,20 +6,20 @@ public class Event implements Serializable {
 
     private String op;
     private int time;
-    private String site;
+    private String sitei; // Event happens in site i
     private Meeting meeting;
 
     public Event(String op_, int t_, String site_, Meeting m_) {
         this.op = op_;
         this.time = t_;
-        this.site = site_;
+        this.sitei = site_;
         this.meeting = m_;
     }
 
     public String getOp() { return op; }
     public int getTime() { return time;}
     public Meeting getMeeting() { return meeting; }
-    public String getSite() { return site; }
+    public String getSite() { return sitei; }
 
     @Override
     public String toString() {

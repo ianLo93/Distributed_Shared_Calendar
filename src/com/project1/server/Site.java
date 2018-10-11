@@ -1,7 +1,7 @@
 package com.project1.server;
 
 import com.project1.app.Calendar;
-import javafx.util.Pair;
+import com.project1.client.Message;
 
 import java.io.*;
 import java.util.*;
@@ -120,11 +120,149 @@ public class Site {
         return first*2+second;
     }
 
-    private boolean hasRec(int[][] T, Event e, String sitej) {
+    public Event [] makeNE(Event [] NP){
+        ArrayList<Event> ne = new ArrayList<Event>();
+        for (Event e : NP){
+            if (!hasRec(e, this.siteid)){
+                ne.add(e);
+            }
+        }
+        Object NE = ne.toArray();
+        return (Event[]) NE;
+//        int i = 0;
+//        for (Event e : ne){
+//            NE[i] = e;
+//            i++;
+//        }
+//        return NE;
+
+    }
+
+    public void updateT(Message msg){
+        int i = Calendar.phonebook.get(siteid).getKey();
+
+        if (!msg.getSender().equals(siteid)){
+            int k = Calendar.phonebook.get(msg.getSender()).getKey();
+
+            int [][] Tk = msg.getT();
+
+            for (int r = 0; r < T.length; r++){
+                for (int s = 0; s < T.length; s++){
+                    T[r][s] = Integer.max(T[r][s], Tk[r][s]);
+                }
+            }
+
+            for (int r = 0; r < T.length; r++){
+                T[i][r] = Integer.max(T[i][r], Tk[k][r]);
+            }
+        }
+        else {
+            T[i][i] = counter;
+        }
+    }
+
+    public void updatePL(Event [] NE){
+        for (int i = 0; i < NE.length; i++)
+            plog.add(NE[i]);
+
+        int i = Calendar.phonebook.get(siteid).getKey();
+        for (Event e : plog){
+            boolean allKnow = true;
+            for (int k = 0; k < T.length; i++){
+                if (T[i][k] < e.getTime()) allKnow = false;
+            }
+            if (allKnow) plog.remove(e);
+        }
+    }
+
+
+    public void UpdateSchedule(Event [] NE){
+        for (int i = 0; i < NE.length; i++){
+            Event e = NE[i];
+            if (e.getOp().equals("create")){
+                insert(e.getMeeting());
+            }
+            else if (e.getOp().equals("cancel")){
+                delete(e.getMeeting());
+            }
+            counter = Integer.max(counter, e.getTime());
+        }
+
+    }
+
+    public Event [] handleConflict(){
+        int [][] timeline = new int[7][48];
+        Arrays.fill(timeline, 0);
+
+        ArrayList<Meeting> sortedMeeting = schedule;
+        Collections.sort(sortedMeeting, new MeetingCompare());
+
+        ArrayList<Event> toCancel = new ArrayList<Event>();
+
+        for (Meeting m : sortedMeeting){
+            int s = parse_time(m.getStartTime());
+            int e = parse_time(m.getEndTime());
+            String day = m.getDay().toLowerCase();
+            int d;
+            switch (day) {
+                case "sunday":
+                    d = 0;
+                    break;
+                case "monday":
+                    d = 1;
+                    break;
+                case "tuesday":
+                    d = 2;
+                    break;
+                case "wednesday":
+                    d = 3;
+                    break;
+                case "thursday":
+                    d = 4;
+                    break;
+                case "friday":
+                    d = 5;
+                    break;
+                case "saturday":
+                    d = 6;
+                    break;
+                default:
+                    d = -1;
+                    break;
+            }
+            for (int t = s; t <= e; t++){
+                if(timeline[d][t] == 1){
+                    // TODO: collect and delete these meetings
+                    delete(m);
+                    Event event = new Event("cancel", counter, siteid, m);
+                    toCancel.add(event);
+                    plog.add(event);
+                    int i = Calendar.phonebook.get(siteid).getKey();
+                    T[i][i] = counter;
+
+                }
+                else timeline[d][t] = 1;
+            }
+
+
+        }
+        Event [] cancelEvents = new Event[toCancel.size()];
+        return cancelEvents;
+    }
+
+    private void delete(Meeting m){
+        schedule.remove(m);
+        counter += 1;
+    }
+    private void insert(Meeting m){
+        schedule.add(m);
+        counter += 1;
+    }
+
+    private boolean hasRec(Event e, String sitej) {
         int k = Calendar.phonebook.get(e.getSite()).getKey();
         int j = Calendar.phonebook.get(sitej).getKey();
-        if (T[j][k] > e.getTime()) return true;
-        else return false;
+        return T[j][k] >= e.getTime();
     }
 
 }
