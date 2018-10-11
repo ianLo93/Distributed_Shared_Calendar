@@ -108,7 +108,7 @@ public class Site {
         plog.add(e);
     }
 
-    public void sendEvent(Message msg) {
+    public void sendMessage(Message msg) {
         // Create a client to send msg
         Client client = new Client(siteid, port);
         String[] participants = msg.getMeeting().getParticipants();
@@ -138,6 +138,15 @@ public class Site {
             if (!hasRec(e, sitej)) NP.add(e);
         }
         return NP;
+    }
+
+    public void update(Message msg){
+        ArrayList<Event> NP = msg.getNP();
+        ArrayList<Event> NE = this.makeNE(NP);
+        // update Meetings
+        this.updateSchedule(NE);
+        this.updateT(msg);
+        this.updateLog(NE);
     }
 
 
@@ -180,25 +189,19 @@ public class Site {
     }
 
 
-    public Event [] makeNE(Event [] NP){
-        ArrayList<Event> ne = new ArrayList<Event>();
+    public ArrayList<Event> makeNE(ArrayList<Event> NP){
+        ArrayList<Event> NE = new ArrayList<Event>();
         for (Event e : NP){
             if (!hasRec(e, this.siteid)){
-                ne.add(e);
+                NE.add(e);
             }
         }
-        Object NE = ne.toArray();
-        return (Event[]) NE;
-//        int i = 0;
-//        for (Event e : ne){
-//            NE[i] = e;
-//            i++;
-//        }
-//        return NE;
+
+        return NE;
 
     }
 
-    public void updateT(Message msg){
+    private void updateT(Message msg){
         int i = Calendar.phonebook.get(siteid).getKey();
 
         if (!msg.getSender().equals(siteid)){
@@ -221,9 +224,11 @@ public class Site {
         }
     }
 
-    public void updatePL(Event [] NE){
-        for (int i = 0; i < NE.length; i++)
-            plog.add(NE[i]);
+    private void updateLog(ArrayList<Event> NE){
+        for (Event e : NE){
+            plog.add(e);
+            log.add(e);
+        }
 
         int i = Calendar.phonebook.get(siteid).getKey();
         for (Event e : plog){
@@ -236,9 +241,8 @@ public class Site {
     }
 
 
-    public void UpdateSchedule(Event [] NE){
-        for (int i = 0; i < NE.length; i++){
-            Event e = NE[i];
+    private void updateSchedule(ArrayList<Event> NE){
+        for (Event e : NE){
             if (e.getOp().equals("create")){
                 insert(e.getMeeting());
             }
@@ -250,16 +254,16 @@ public class Site {
 
     }
 
-    public Event [] handleConflict(){
+    public void handleConflict(){
         int [][] timeline = new int[7][48];
         Arrays.fill(timeline, 0);
 
         ArrayList<Meeting> sortedMeeting = schedule;
         Collections.sort(sortedMeeting, new MeetingCompare());
 
-        ArrayList<Event> toCancel = new ArrayList<Event>();
+        ArrayList<String> otherSites = new ArrayList<String>();
 
-        for (Meeting m : sortedMeeting){
+        for (Meeting m : sortedMeeting) {
             int s = parse_time(m.getStartTime());
             int e = parse_time(m.getEndTime());
             String day = m.getDay().toLowerCase();
@@ -290,24 +294,39 @@ public class Site {
                     d = -1;
                     break;
             }
-            for (int t = s; t <= e; t++){
-                if(timeline[d][t] == 1){
-                    // TODO: collect and delete these meetings
-                    delete(m);
-                    Event event = new Event("cancel", counter, siteid, m);
-                    toCancel.add(event);
-                    plog.add(event);
-                    int i = Calendar.phonebook.get(siteid).getKey();
-                    T[i][i] = counter;
+            boolean cancel = false;
+            for (int t = s; t <= e; t++) {
+                if (timeline[d][t] == 1) {
+                    cancel = true;
+                    rmMeeting(m);
+                    // record other participants
+                    for (String id : m.getParticipants()){
+                        otherSites.add(id);
+                    }
+                    break;
 
                 }
-                else timeline[d][t] = 1;
+            }
+            if (!cancel){
+                for (int t = s; t <= e; t++) timeline[d][t] = 1;
             }
 
 
         }
-        Event [] cancelEvents = new Event[toCancel.size()];
-        return cancelEvents;
+        // send message to every participants
+        if (otherSites.size() > 0){
+            String [] participants = new String[otherSites.size()];
+            int i = 0;
+            for (String p : otherSites) {
+                participants[i] = p;
+                i++;
+
+            }
+//            Meeting dummyMeeting = new Meeting("dummy", null,null,null, participants);
+            Message msg = new Message(null, null, T, siteid, "dummy", null, null,null, participants);
+            sendMessage(msg);
+        }
+
     }
 
     private void delete(Meeting m){

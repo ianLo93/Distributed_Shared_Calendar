@@ -1,6 +1,7 @@
 package com.project1.server;
 
 import com.project1.client.Message;
+import sun.misc.resources.Messages_es;
 
 import java.io.*;
 import java.net.*;
@@ -50,7 +51,7 @@ public class Server extends Thread {
                     // Update T, schedule, log
                     mySite.addMeeting(recvMsg.getMeeting());
                     // Send to participants
-                    mySite.sendEvent(recvMsg);
+                    mySite.sendMessage(recvMsg);
                 }
             } else if (cmd.equals("cancel")) {
                 Meeting m = mySite.getMeeting(recvMsg.getMeeting().getName());
@@ -60,7 +61,7 @@ public class Server extends Thread {
                     // Update T, schedule, log
                     mySite.rmMeeting(m);
                     // Send to participants
-                    mySite.sendEvent(recvMsg);
+                    mySite.sendMessage(recvMsg);
                 }
             } else if (cmd.equals("view")) {
                 mySite.view(); // Call view() to print calendar
@@ -73,17 +74,11 @@ public class Server extends Thread {
             }
         } else {
             // update my site according to NP
-
-            Event [] NP = recvMsg.getNP();
-            Event [] NE = mySite.makeNE(NP);
-            // update Meetings
-            mySite.UpdateSchedule(NE);
-            mySite.updateT(recvMsg);
-            mySite.updatePL(NE);
-
+            mySite.update(recvMsg);
 
             // TODO: handle conflicts
             // check conflict
+            mySite.handleConflict();
 
         }
     }
