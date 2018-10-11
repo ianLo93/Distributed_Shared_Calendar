@@ -116,13 +116,15 @@ public class Site {
             return -1;
         }
         int first = Integer.parseInt(clocks[0]);
-        int second = Integer.parseInt(clocks[1]);
+        int second = Integer.parseInt(clocks[1])/30;
         return first*2+second;
     }
 
-    private boolean hasRec() {
-        //TODO
-        return true;
+    private boolean hasRec(int[][] T, Event e, String sitej) {
+        int k = Calendar.phonebook.get(e.getSite()).getKey();
+        int j = Calendar.phonebook.get(sitej).getKey();
+        if (T[j][k] > e.getTime()) return true;
+        else return false;
     }
 
 }

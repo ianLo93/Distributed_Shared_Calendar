@@ -24,6 +24,7 @@ public class Meeting implements Serializable {
     public String getEndTime() { return end; }
     public String[] getParticipants() { return participants; }
 
+    @Override
     public String toString(){
         StringBuilder m = new StringBuilder(name + " " + day+ " " + start + " " + end + " ");
         int i=0;

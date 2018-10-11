@@ -21,6 +21,7 @@ public class Event implements Serializable {
     public Meeting getMeeting() { return meeting; }
     public String getSite() { return site; }
 
+    @Override
     public String toString() {
         StringBuilder e = new StringBuilder(op+" ");
         e.append(meeting.toString());

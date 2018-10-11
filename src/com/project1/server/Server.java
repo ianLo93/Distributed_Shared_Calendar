@@ -53,7 +53,6 @@ public class Server extends Thread {
                      Client client = new Client(siteid, port);
                 }
             } else if (cmd.equals("cancel")) {
-                System.out.println("You get here");
                 // TODO check meeting
                 // TODO cancel meeting
                 // TODO update T, schedule, log
