@@ -23,13 +23,13 @@ public class Site {
         try {
             FileInputStream saveFile = new FileInputStream("state.sav");
             ObjectInputStream restore = new ObjectInputStream(saveFile);
-            siteid = (String) restore.readObject();
-            port = (Integer) restore.readObject();
-            counter = (Integer) restore.readObject();
-            schedule = (ArrayList<Meeting>) restore.readObject();
-            log = (ArrayList<Event>) restore.readObject();
-            plog = (ArrayList<Event>) restore.readObject();
-            T = (int[][]) restore.readObject();
+            this.siteid = (String) restore.readObject();
+            this.port = (Integer) restore.readObject();
+            this.counter = (Integer) restore.readObject();
+            this.schedule = (ArrayList<Meeting>) restore.readObject();
+            this.log = (ArrayList<Event>) restore.readObject();
+            this.plog = (ArrayList<Event>) restore.readObject();
+            this.T = (int[][]) restore.readObject();
             restore.close();
         } catch (IOException i) {
             init(siteid_, port_);
@@ -37,6 +37,7 @@ public class Site {
             init(siteid_, port_);
         }
     }
+
     public void view() {
         Collections.sort(schedule, Meeting.timeComparator);
         for (Meeting m : schedule) System.out.println(m);
@@ -162,12 +163,12 @@ public class Site {
         this.updateLog(NE);
     }
 
-    private void init(String siteid_, int port_) {
-        int s = Calendar.phonebook.size();
+    public void init(String siteid_, int port_) {
         this.counter = 0;
         this.siteid = siteid_;
         this.port = port_;
 
+        int s = Calendar.phonebook.size();
         this.T = new int[s][s];
         this.log = new ArrayList<>();
         this.plog = new ArrayList<>();
@@ -202,7 +203,6 @@ public class Site {
 
     private void updateT(Message msg){
         int i = Calendar.phonebook.get(siteid)[0];
-        System.out.println(i);
         if (msg != null){
             int k = Calendar.phonebook.get(msg.getSender())[0];
             // Get T matrix from site K

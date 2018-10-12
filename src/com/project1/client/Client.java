@@ -20,13 +20,12 @@ public class Client {
             this.clientSocket = new DatagramSocket();
             this.siteid = siteid_;
             this.port = port_;
-        }
-        catch (SocketException s) {
+        } catch (SocketException s) {
             System.out.println(s);
         }
     }
 
-    public Message parse_command (String command) {
+    public Message parse_command(String command) {
         // Parse command
         String[] cmds = command.split(" ");
         // Error checking
@@ -50,8 +49,7 @@ public class Client {
             }
             return new Message(cmds[1], null, null, this.siteid,
                     cmds[2], cmds[3], cmds[4], cmds[5], participants);
-        }
-        else if (cmds[1].equals("cancel")) {
+        } else if (cmds[1].equals("cancel")) {
             if (cmds.length != 3) {
                 System.out.println("ERROR: Invalid Meeting Cancellation");
                 System.out.println("USAGE: % cancel <name>");
@@ -59,8 +57,7 @@ public class Client {
             }
             return new Message(cmds[1], null, null, this.siteid,
                     cmds[2], null, null, null, null);
-        }
-        else if (cmds[1].equals("view")) {
+        } else if (cmds[1].equals("view")) {
             if (cmds.length != 2) {
                 System.out.println("ERROR: Invalid View Command");
                 System.out.println("USAGE: % view");
@@ -68,8 +65,7 @@ public class Client {
             }
             return new Message(cmds[1], null, null, this.siteid,
                     null, null, null, null, null);
-        }
-        else if (cmds[1].equals("myview")) {
+        } else if (cmds[1].equals("myview")) {
             if (cmds.length != 2) {
                 System.out.println("ERROR: Invalid MyView Command");
                 System.out.println("USAGE: % myview");
@@ -77,8 +73,7 @@ public class Client {
             }
             return new Message(cmds[1], null, null, this.siteid,
                     null, null, null, null, null);
-        }
-        else if (cmds[1].equals("log")) {
+        } else if (cmds[1].equals("log")) {
             if (cmds.length != 2) {
                 System.out.println("ERROR: Invalid Log Command");
                 System.out.println("USAGE: % log");
@@ -86,8 +81,7 @@ public class Client {
             }
             return new Message(cmds[1], null, null, this.siteid,
                     null, null, null, null, null);
-        }
-        else if (cmds[1].equals("quit")) {
+        } else if (cmds[1].equals("quit")) {
             if (cmds.length != 2) {
                 System.out.println("ERROR: Invalid Exit Command");
                 System.out.println("USAGE: % quit");
@@ -95,8 +89,15 @@ public class Client {
             }
             return new Message(cmds[1], null, null, this.siteid,
                     null, null, null, null, null);
-        }
-        else {
+        } else if (cmds[1].equals("init")) {
+            if (cmds.length != 2) {
+                System.out.println("ERROR: Invalid Initialization Command");
+                System.out.println("USAGE: % init");
+                return null;
+            }
+            return new Message(cmds[1], null, null, this.siteid,
+                    null, null, null, null, null);
+        } else {
             System.out.println("ERROR: Invalid Command");
             System.out.println("USAGE: % <command> [<meeting_info>]");
             return null;
