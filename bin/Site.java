@@ -1,8 +1,4 @@
-package com.project1.server;
 
-import com.project1.app.Calendar;
-import com.project1.client.Client;
-import com.project1.client.Message;
 
 import java.io.*;
 import java.util.*;
@@ -319,7 +315,7 @@ public class Site {
 
     @Override
     public String toString() {
-        StringBuilder s = new StringBuilder("\nSITE INFO\nID: "
+        StringBuilder s = new StringBuilder("\nSite info\nID: "
                 +siteid+"\nPort: "+port+"\nCounter: "+counter+"\nGlobal Knowledge:\n");
         for (int i=0; i<T.length; i++) {
             for (int j=0; j<T.length; j++) s.append(T[i][j]+" ");

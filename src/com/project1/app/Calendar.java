@@ -1,70 +1,67 @@
 package com.project1.app;
 import java.util.*;
+import java.io.*;
 import com.project1.client.Client;
 import com.project1.client.Message;
 import com.project1.server.Server;
-import javafx.util.*;
 
 public class Calendar {
 
-    public static Map<String, Pair<Integer, Integer>> phonebook = new HashMap<>();
+    public static HashMap<String, int[]> phonebook;
+
+    public static void readFile(String path) {
+        try {
+            File file = new File(path);
+            BufferedReader buffer = new BufferedReader(new FileReader(file));
+            String line;
+
+            int index = 0;
+            phonebook = new HashMap<>();
+            while ((line = buffer.readLine()) != null) {
+                System.out.println(line);
+                line = line.trim();
+                String[] socket_info = line.split(" ");
+                String siteid = socket_info[0];
+                int port = Integer.parseInt(socket_info[1]);
+                phonebook.put(siteid, new int[]{index, port});
+                index++;
+
+            }
+        } catch (IOException i) {
+            System.out.println(i);
+        }
+    }
 
     public static void main(String args[]) {
 
-        if(args.length != 1){
+        // Read system site infos and make phonebook
+        readFile("known_udp.txt");
+
+        if(args.length != 1 || !phonebook.containsKey(args[0])){
             System.out.println("ERROR: Invalid Arguments");
-            System.out.println("USAGE: ./a.java <site_id> ");
+            System.out.println("USAGE: ./a.java <site_id>");
             System.exit(1);
         }
 
-        // TODO read <hostname> <port> from known_udp.txt
-        phonebook.put("localhost", new Pair(0, 5000));
-//        phonebook.put("127.4.0.2", new Pair(1, 5001));
-//        phonebook.put("127.4.0.3", new Pair(2, 5002));
+        // Get port number (args[0] stands for site ID)
+        int port = phonebook.get(args[0])[1];
 
-        String siteid = args[0];
-        int port = phonebook.get(siteid).getValue();
-
-        Server server = new Server(siteid, port);
+        Server server = new Server(args[0], port);
         server.setDaemon(true);
         server.start();
 
-        Client client = new Client(siteid, port);
+        Client client = new Client(args[0], port);
 
         Scanner sc = new Scanner(System.in);
-        String command = "";
+        String command;
         while (server.getStatus()) {
             command = sc.nextLine();
             Message msg = client.parse_command(command);
             if (msg == null) continue;
-            client.sendMsg(msg, siteid, port);
+            client.sendMsg(msg, args[0], port);
         }
 
         client.close();
     }
-
-    //  public void readFile(String path){
-//        try {
-//            File file = new File(path);
-//            BufferedReader buffer = new BufferedReader(new FileReader(file));
-//            String line = "";
-//
-//            int index = 0;
-//            mtoT = new HashMap<>();
-//            while ( (line = buffer.readLine()) != null ) {
-//                System.out.println(line);
-//                line = line.trim();
-//                String [] words = line.split(" ");
-//                mtoT.put(words[0], index);
-//                index++;
-//
-//            }
-//        }
-//        catch (IOException i) {
-//            System.out.println(i);
-//        }
-//
-//
-//    }
 
 }
