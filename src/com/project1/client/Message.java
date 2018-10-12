@@ -15,6 +15,15 @@ public class Message implements Serializable {
     private Meeting meeting;
 
     public Message(String msg_, ArrayList<Event> NP_, int[][] T_, String sender_,
+                   Meeting m_) {
+        this.msg = msg_;
+        this.NP = NP_;
+        this.T = T_;
+        this.sender = sender_;
+        this.meeting = m_;
+    }
+
+    public Message(String msg_, ArrayList<Event> NP_, int[][] T_, String sender_,
                    String name_, String day_, String start_, String end_, String[] participants_) {
         this.msg = msg_;
         this.NP = NP_;

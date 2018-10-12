@@ -1,19 +1,15 @@
 package com.project1.server;
 
 import com.project1.client.Message;
-import sun.misc.resources.Messages_es;
 
 import java.io.*;
 import java.net.*;
-import java.util.ArrayList;
-//import java.util.*;
 
 public class Server extends Thread {
 
     private DatagramSocket serverSocket;
     private Site mySite;
     private boolean running;
-    private byte[] buf;
     private String siteid;
     private int port;
 
@@ -49,17 +45,17 @@ public class Server extends Thread {
                             "Unable to schedule meeting " + recvMsg.getMeeting().getName());
                 } else {
                     // Update T, schedule, log
-                    mySite.addMeeting(recvMsg.getMeeting());
+                    mySite.addMeeting(recvMsg.getMeeting(), false);
                     // Send to participants
                     mySite.sendMessage(recvMsg);
                 }
             } else if (cmd.equals("cancel")) {
-                Meeting m = mySite.getMeeting(recvMsg.getMeeting().getName());
+                Meeting m = mySite.getMeetingByName(recvMsg.getMeeting().getName());
                 // Remove meeting if it exists
                 if (m != null) {
                     recvMsg.setMeeting(m);
                     // Update T, schedule, log
-                    mySite.rmMeeting(m);
+                    mySite.rmMeeting(m, false);
                     // Send to participants
                     mySite.sendMessage(recvMsg);
                 }
@@ -73,13 +69,10 @@ public class Server extends Thread {
                 System.out.println("ERROR: This should not happen");
             }
         } else {
-            // update my site according to NP
+            // Update my site according to NP
             mySite.update(recvMsg);
-
-            // TODO: handle conflicts
-            // check conflict
-            mySite.handleConflict();
-
+            // Handle conflicts
+            mySite.handle_conflict();
         }
     }
 
@@ -90,7 +83,7 @@ public class Server extends Thread {
         while (running) {
             try {
                 // Create datagram packet holder and send received msg to buf
-                buf = new byte[1024];
+                byte[] buf = new byte[1024];
                 DatagramPacket packet = new DatagramPacket(buf, buf.length);
                 serverSocket.receive(packet);
 
@@ -119,8 +112,8 @@ public class Server extends Thread {
                 // Execute commands
                 exe_cmd(recvMsg);
 
-                // Release buffer
-                buf = null;
+                System.out.println(mySite);
+
             } catch (IOException i) {
                 mySite.save_state();
                 System.out.println(i);

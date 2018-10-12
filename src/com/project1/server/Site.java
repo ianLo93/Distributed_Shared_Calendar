@@ -84,48 +84,51 @@ public class Site {
         }
     }
 
-    public void addMeeting(Meeting m) {
+    public void addMeeting(Meeting m, boolean hasEvent) {
         counter = counter + 1;
         schedule.add(m);
-        Event e = new Event("create", counter, siteid, m);
-        updateT();
-        log.add(e);
-        plog.add(e);
+        if (!hasEvent) {
+            Event e = new Event("create", counter, siteid, m);
+            updateT(null);
+            log.add(e);
+            plog.add(e);
+        }
+        System.out.println("Meeting "+m.getName()+" scheduled");
     }
 
-    public void updateT() {
-        int i = Calendar.phonebook.get(siteid).getKey();
-        T[i][i] = counter;
-    }
-
-    public void rmMeeting(Meeting m) {
+    public void rmMeeting(Meeting m, boolean hasEvent) {
         counter = counter + 1;
         schedule.remove(m);
-        int i = Calendar.phonebook.get(siteid).getKey();
-        T[i][i] = counter;
-        Event e = new Event("cancel", counter, siteid, m);
-        log.add(e);
-        plog.add(e);
+        if (!hasEvent) {
+            updateT(null);
+            Event e = new Event("cancel", counter, siteid, m);
+            log.add(e);
+            plog.add(e);
+        }
+        System.out.println("Meeting "+m.getName()+" cancelled");
     }
 
     public void sendMessage(Message msg) {
         // Create a client to send msg
         Client client = new Client(siteid, port);
         String[] participants = msg.getMeeting().getParticipants();
+
         // Insert T to message
         msg.setT(T);
         // Client send message to participants
         for (String p: participants) {
             // Make NP and insert to message
-            ArrayList<Event> NP = makeNP(p);
-            msg.setNP(NP);
-            int port = Calendar.phonebook.get(p).getValue();
-            client.sendMsg(msg, p, port);
+            if (!p.equals(siteid)) {
+                ArrayList<Event> NP = makeNP(p);
+                msg.setNP(NP);
+                int port = Calendar.phonebook.get(p).getValue();
+                client.sendMsg(msg, p, port);
+            }
         }
         client.close();
     }
 
-    public Meeting getMeeting(String name_) {
+    public Meeting getMeetingByName(String name_) { // Get meeting by meeting name
         for (Meeting m: schedule) {
             if (m.getName().equals(name_)) return m;
         }
@@ -140,6 +143,16 @@ public class Site {
         return NP;
     }
 
+    public ArrayList<Event> makeNE(ArrayList<Event> NP){
+        ArrayList<Event> NE = new ArrayList<>();
+        for (Event e : NP){
+            if (!hasRec(e, this.siteid)){
+                NE.add(e);
+            }
+        }
+        return NE;
+    }
+
     public void update(Message msg){
         ArrayList<Event> NP = msg.getNP();
         ArrayList<Event> NE = this.makeNE(NP);
@@ -148,7 +161,6 @@ public class Site {
         this.updateT(msg);
         this.updateLog(NE);
     }
-
 
     private void init(String siteid_, int port_) {
         int s = Calendar.phonebook.size();
@@ -188,38 +200,23 @@ public class Site {
         return first * 2 + second;
     }
 
-
-    public ArrayList<Event> makeNE(ArrayList<Event> NP){
-        ArrayList<Event> NE = new ArrayList<Event>();
-        for (Event e : NP){
-            if (!hasRec(e, this.siteid)){
-                NE.add(e);
-            }
-        }
-
-        return NE;
-
-    }
-
     private void updateT(Message msg){
         int i = Calendar.phonebook.get(siteid).getKey();
-
-        if (!msg.getSender().equals(siteid)){
+        if (msg != null){
             int k = Calendar.phonebook.get(msg.getSender()).getKey();
-
-            int [][] Tk = msg.getT();
-
+            // Get T matrix from site K
+            int[][] Tk = msg.getT();
+            // Update global knowledge
             for (int r = 0; r < T.length; r++){
                 for (int s = 0; s < T.length; s++){
                     T[r][s] = Integer.max(T[r][s], Tk[r][s]);
                 }
             }
-
             for (int r = 0; r < T.length; r++){
                 T[i][r] = Integer.max(T[i][r], Tk[k][r]);
             }
         }
-        else {
+        else { // Sent from my site
             T[i][i] = counter;
         }
     }
@@ -229,12 +226,11 @@ public class Site {
             plog.add(e);
             log.add(e);
         }
-
-        int i = Calendar.phonebook.get(siteid).getKey();
+        // Update partial log, remove globally known logs
         for (Event e : plog){
             boolean allKnow = true;
-            for (int k = 0; k < T.length; i++){
-                if (T[i][k] < e.getTime()) allKnow = false;
+            for (String sitej: Calendar.phonebook.keySet()) {
+                if (!hasRec(e, sitej)) allKnow = false;
             }
             if (allKnow) plog.remove(e);
         }
@@ -242,100 +238,70 @@ public class Site {
 
 
     private void updateSchedule(ArrayList<Event> NE){
+        // Reproduce the log, if the meeting was created, we create
+        // if the meeting was cancelled we cancelled
+        // We can use HashMap to accelerate the process in large data input
         for (Event e : NE){
             if (e.getOp().equals("create")){
-                insert(e.getMeeting());
+                addMeeting(e.getMeeting(), true);
             }
-            else if (e.getOp().equals("cancel")){
-                delete(e.getMeeting());
+            if (e.getOp().equals("cancel")){
+                rmMeeting(e.getMeeting(), true);
             }
             counter = Integer.max(counter, e.getTime());
         }
-
     }
 
-    public void handleConflict(){
-        int [][] timeline = new int[7][48];
-        Arrays.fill(timeline, 0);
+    public void handle_conflict(){
+        int[][] timeline = new int[7][48];
 
         ArrayList<Meeting> sortedMeeting = schedule;
         Collections.sort(sortedMeeting, new MeetingCompare());
-
-        ArrayList<String> otherSites = new ArrayList<String>();
 
         for (Meeting m : sortedMeeting) {
             int s = parse_time(m.getStartTime());
             int e = parse_time(m.getEndTime());
             String day = m.getDay().toLowerCase();
-            int d;
+            int d = -1;
             switch (day) {
-                case "sunday":
+                case "10/14/2018":
                     d = 0;
                     break;
-                case "monday":
+                case "10/15/2018":
                     d = 1;
                     break;
-                case "tuesday":
+                case "10/16/2018":
                     d = 2;
                     break;
-                case "wednesday":
+                case "10/17/2018":
                     d = 3;
                     break;
-                case "thursday":
+                case "10/18/2018":
                     d = 4;
                     break;
-                case "friday":
+                case "10/19/2018":
                     d = 5;
                     break;
-                case "saturday":
+                case "10/20/2018":
                     d = 6;
                     break;
-                default:
-                    d = -1;
-                    break;
             }
-            boolean cancel = false;
+            // Check conflicts
+            boolean conflict = false;
             for (int t = s; t <= e; t++) {
                 if (timeline[d][t] == 1) {
-                    cancel = true;
-                    rmMeeting(m);
-                    // record other participants
-                    for (String id : m.getParticipants()){
-                        otherSites.add(id);
-                    }
+                    conflict = true;
+                    rmMeeting(m, false);
+                    Message msg = new Message("cancel", null, T, siteid, m);
+                    sendMessage(msg);
                     break;
-
                 }
             }
-            if (!cancel){
+            // If we don't have conflict for meeting m
+            if (!conflict){
                 for (int t = s; t <= e; t++) timeline[d][t] = 1;
             }
-
-
         }
-        // send message to every participants
-        if (otherSites.size() > 0){
-            String [] participants = new String[otherSites.size()];
-            int i = 0;
-            for (String p : otherSites) {
-                participants[i] = p;
-                i++;
-
-            }
-//            Meeting dummyMeeting = new Meeting("dummy", null,null,null, participants);
-            Message msg = new Message(null, null, T, siteid, "dummy", null, null,null, participants);
-            sendMessage(msg);
-        }
-
-    }
-
-    private void delete(Meeting m){
-        schedule.remove(m);
-        counter += 1;
-    }
-    private void insert(Meeting m){
-        schedule.add(m);
-        counter += 1;
     }
 
     private boolean hasRec(Event e, String sitej) {
@@ -347,6 +313,16 @@ public class Site {
             System.out.println("ERROR: No such user");
             return true;
         }
+    }
 
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder("\nSite info\nID: "
+                +siteid+"\nPort: "+port+"\nCounter: "+counter+"\nGlobal Knowledge:\n");
+        for (int i=0; i<T.length; i++) {
+            for (int j=0; j<T.length; j++) s.append(T[i][j]+" ");
+            s.append("\n");
+        }
+        return s.toString();
     }
 }

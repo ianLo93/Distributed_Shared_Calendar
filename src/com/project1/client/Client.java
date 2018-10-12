@@ -135,6 +135,8 @@ public class Client {
         for (String p : participants) {
             if (Calendar.phonebook.containsKey(p)) valid_part.add(p);
         }
-        return (String[]) valid_part.toArray();
+        String[] vp = new String[valid_part.size()];
+        for (int i=0; i<valid_part.size(); i++) vp[i] = valid_part.get(i);
+        return vp;
     }
 }

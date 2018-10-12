@@ -19,8 +19,8 @@ public class Calendar {
 
         // TODO read <hostname> <port> from known_udp.txt
         phonebook.put("localhost", new Pair(0, 5000));
-        phonebook.put("127.4.0.2", new Pair(1, 5001));
-        phonebook.put("127.4.0.3", new Pair(2, 5002));
+//        phonebook.put("127.4.0.2", new Pair(1, 5001));
+//        phonebook.put("127.4.0.3", new Pair(2, 5002));
 
         String siteid = args[0];
         int port = phonebook.get(siteid).getValue();
@@ -33,11 +33,10 @@ public class Calendar {
 
         Scanner sc = new Scanner(System.in);
         String command = "";
-        while (!command.equals("% quit")) {
+        while (server.getStatus()) {
             command = sc.nextLine();
             Message msg = client.parse_command(command);
             if (msg == null) continue;
-            if (!server.getStatus()) break;
             client.sendMsg(msg, siteid, port);
         }
 
