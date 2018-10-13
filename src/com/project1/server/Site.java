@@ -5,6 +5,7 @@ import com.project1.client.Client;
 import com.project1.client.Message;
 
 import java.io.*;
+import java.text.ParseException;
 import java.util.*;
 
 
@@ -93,8 +94,8 @@ public class Site {
             updateT(null);
             log.add(e);
             plog.add(e);
+            System.out.println("Meeting "+m.getName()+" scheduled");
         }
-        System.out.println("Meeting "+m.getName()+" scheduled");
     }
 
     public void rmMeeting(Meeting m, boolean hasEvent) {
@@ -106,8 +107,8 @@ public class Site {
             Event e = new Event("cancel", counter, siteid, m);
             log.add(e);
             plog.add(e);
+            System.out.println("Meeting "+m.getName()+" cancelled");
         }
-        System.out.println("Meeting "+m.getName()+" cancelled");
     }
 
     public void sendMessage(Message msg) {
@@ -190,16 +191,20 @@ public class Site {
         return meetings;
     }
 
-    private int parse_time(String timestamp) {
+    public int parse_time(String timestamp) {
         String[] clocks = timestamp.split(":");
         if (clocks.length != 2) {
             System.out.println("ERROR: Invalid Time");
             System.out.println("USAGE: <hour[1:24]>:<minute>[00/30]");
             return -1;
         }
-        int first = Integer.parseInt(clocks[0]);
-        int second = Integer.parseInt(clocks[1]) / 30;
-        return first * 2 + second;
+        try {
+            int first = Integer.parseInt(clocks[0]);
+            int second = Integer.parseInt(clocks[1]);
+            return first * 2 + second/30;
+        } catch (NumberFormatException n) {
+            return -1;
+        }
     }
 
     private void updateT(Message msg){
