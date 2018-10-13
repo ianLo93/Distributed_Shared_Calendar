@@ -1,7 +1,7 @@
 package com.project1.client;
 
 import com.project1.app.Calendar;
-import com.sun.deploy.util.ArrayUtil;
+import com.project1.server.Site;
 
 import java.io.*;
 import java.net.*;
@@ -12,14 +12,12 @@ public class Client {
 
     private DatagramSocket clientSocket;
     private String siteid;
-    private int port;
     private byte[] buf;
 
     public Client(String siteid_, int port_) {
         try {
             this.clientSocket = new DatagramSocket();
             this.siteid = siteid_;
-            this.port = port_;
         } catch (SocketException s) {
             System.out.println(s);
         }
@@ -42,11 +40,25 @@ public class Client {
                         "<end_time> <participants>");
                 return null;
             }
-            String[] participants = valid_users(cmds[6].split(","));
-            if (participants.length == 0) {
-                System.out.println("Schedule ERROR: No Valid User Provided");
+            if (cmds[3] != "10/14/2018" && cmds[3] != "10/15/2018" && cmds[3] != "10/16/2018" &&
+                    cmds[3] != "10/17/2018" && cmds[3] != "10/18/2018" && cmds[3] != "10/19/2018" &&
+                    cmds[3] != "10/20/2018") {
+                System.out.println("DAY SCHEDULE ERROR: <day> Format Error");
                 return null;
             }
+            String[] participants = valid_users(cmds[6].split(","));
+            if (participants.length == 0) {
+                System.out.println("SCHEDULE ERROR: No Valid User Provided");
+                return null;
+            }
+            Site tmp = new Site(siteid, 5000);
+            int s = tmp.parse_time(cmds[4]);
+            int e = tmp.parse_time(cmds[5]);
+            if (s < 0 || s > 48 || e < 0 || e > 48 || e < s) {
+                System.out.println("TIME SCHEDULE ERROR: <start_time> or <end_time> Format Error");
+                return null;
+            }
+
             return new Message(cmds[1], null, null, this.siteid,
                     cmds[2], cmds[3], cmds[4], cmds[5], participants);
         } else if (cmds[1].equals("cancel")) {

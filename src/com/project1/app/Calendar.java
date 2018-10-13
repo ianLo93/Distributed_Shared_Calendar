@@ -39,7 +39,6 @@ public class Calendar {
 
         // Read system site infos and make phonebook
         readFile("knownhosts_udp.txt");
-//        System.out.println(phonebook.size());
 
         if(args.length != 1 || !Calendar.phonebook.containsKey(args[0])){
             System.out.println("ERROR: Invalid Arguments");
