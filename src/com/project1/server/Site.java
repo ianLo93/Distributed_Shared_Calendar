@@ -60,9 +60,9 @@ public class Site {
         for (Meeting m : meetings) {
             if (!m.getDay().equals(day)) continue;
             int sm = parse_time(m.getStartTime()), em = parse_time(m.getEndTime());
-            for (int i = sm; i <= em; i++) occupiedTimes[i] = 1;
+            for (int i = sm; i < em; i++) occupiedTimes[i] = 1;
         }
-        for (int i = s; i <= e; i++) {
+        for (int i = s; i < e; i++) {
             if (occupiedTimes[i] == 1) return true;
         }
         return false;
@@ -98,6 +98,7 @@ public class Site {
     }
 
     public void rmMeeting(Meeting m, boolean hasEvent) {
+        if (!schedule.contains(m)) return ;
         counter = counter + 1;
         schedule.remove(m);
         if (!hasEvent) {
@@ -260,7 +261,8 @@ public class Site {
         ArrayList<Meeting> sortedMeeting = schedule;
         Collections.sort(sortedMeeting, new MeetingCompare());
 
-        for (Meeting m : sortedMeeting) {
+        for (int i = 0; i < sortedMeeting.size(); i++) {
+            Meeting m = sortedMeeting.get(i);
             int s = parse_time(m.getStartTime());
             int e = parse_time(m.getEndTime());
             String day = m.getDay().toLowerCase();
@@ -296,12 +298,13 @@ public class Site {
                     rmMeeting(m, false);
                     Message msg = new Message("cancel", null, T, siteid, m);
                     sendMessage(msg);
+                    i--;
                     break;
                 }
             }
             // If we don't have conflict for meeting m
             if (!conflict){
-                for (int t = s; t <= e; t++) timeline[d][t] = 1;
+                for (int t = s; t < e; t++) timeline[d][t] = 1;
             }
         }
     }

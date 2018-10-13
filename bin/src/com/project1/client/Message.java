@@ -1,3 +1,7 @@
+package com.project1.client;
+
+import com.project1.server.Event;
+import com.project1.server.Meeting;
 
 import java.io.*;
 import java.util.*;

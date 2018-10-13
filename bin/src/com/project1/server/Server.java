@@ -1,3 +1,7 @@
+package com.project1.server;
+
+import com.project1.app.Calendar;
+import com.project1.client.Message;
 
 import java.io.*;
 import java.net.*;
@@ -62,6 +66,9 @@ public class Server extends Thread {
                 mySite.myView(); // Call myView() to print my schedule
             } else if (cmd.equals("log")) {
                 mySite.viewLog(); // Call viewLog() to print all logs in my site
+            } else if (cmd.equals("init")){
+                mySite.init(siteid, port);
+                mySite.save_state();
             } else {
                 System.out.println("ERROR: This should not happen");
             }
@@ -112,9 +119,12 @@ public class Server extends Thread {
                 System.out.println(mySite);
 
             } catch (IOException i) {
-                mySite.save_state();
                 System.out.println(i);
+                running = false;
                 break;
+            } finally {
+                mySite.save_state();
+                Calendar.mutex.release();
             }
         }
     }

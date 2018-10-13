@@ -1,4 +1,8 @@
+package com.project1.server;
 
+import com.project1.app.Calendar;
+import com.project1.client.Client;
+import com.project1.client.Message;
 
 import java.io.*;
 import java.util.*;
@@ -19,13 +23,13 @@ public class Site {
         try {
             FileInputStream saveFile = new FileInputStream("state.sav");
             ObjectInputStream restore = new ObjectInputStream(saveFile);
-            siteid = (String) restore.readObject();
-            port = (Integer) restore.readObject();
-            counter = (Integer) restore.readObject();
-            schedule = (ArrayList<Meeting>) restore.readObject();
-            log = (ArrayList<Event>) restore.readObject();
-            plog = (ArrayList<Event>) restore.readObject();
-            T = (int[][]) restore.readObject();
+            this.siteid = (String) restore.readObject();
+            this.port = (Integer) restore.readObject();
+            this.counter = (Integer) restore.readObject();
+            this.schedule = (ArrayList<Meeting>) restore.readObject();
+            this.log = (ArrayList<Event>) restore.readObject();
+            this.plog = (ArrayList<Event>) restore.readObject();
+            this.T = (int[][]) restore.readObject();
             restore.close();
         } catch (IOException i) {
             init(siteid_, port_);
@@ -33,6 +37,7 @@ public class Site {
             init(siteid_, port_);
         }
     }
+
     public void view() {
         Collections.sort(schedule, Meeting.timeComparator);
         for (Meeting m : schedule) System.out.println(m);
@@ -55,9 +60,9 @@ public class Site {
         for (Meeting m : meetings) {
             if (!m.getDay().equals(day)) continue;
             int sm = parse_time(m.getStartTime()), em = parse_time(m.getEndTime());
-            for (int i = sm; i <= em; i++) occupiedTimes[i] = 1;
+            for (int i = sm; i < em; i++) occupiedTimes[i] = 1;
         }
-        for (int i = s; i <= e; i++) {
+        for (int i = s; i < e; i++) {
             if (occupiedTimes[i] == 1) return true;
         }
         return false;
@@ -93,6 +98,7 @@ public class Site {
     }
 
     public void rmMeeting(Meeting m, boolean hasEvent) {
+        if (!schedule.contains(m)) return ;
         counter = counter + 1;
         schedule.remove(m);
         if (!hasEvent) {
@@ -158,12 +164,12 @@ public class Site {
         this.updateLog(NE);
     }
 
-    private void init(String siteid_, int port_) {
-        int s = Calendar.phonebook.size();
+    public void init(String siteid_, int port_) {
         this.counter = 0;
         this.siteid = siteid_;
         this.port = port_;
 
+        int s = Calendar.phonebook.size();
         this.T = new int[s][s];
         this.log = new ArrayList<>();
         this.plog = new ArrayList<>();
@@ -198,7 +204,6 @@ public class Site {
 
     private void updateT(Message msg){
         int i = Calendar.phonebook.get(siteid)[0];
-        System.out.println(i);
         if (msg != null){
             int k = Calendar.phonebook.get(msg.getSender())[0];
             // Get T matrix from site K
@@ -256,7 +261,8 @@ public class Site {
         ArrayList<Meeting> sortedMeeting = schedule;
         Collections.sort(sortedMeeting, new MeetingCompare());
 
-        for (Meeting m : sortedMeeting) {
+        for (int i = 0; i < sortedMeeting.size(); i++) {
+            Meeting m = sortedMeeting.get(i);
             int s = parse_time(m.getStartTime());
             int e = parse_time(m.getEndTime());
             String day = m.getDay().toLowerCase();
@@ -292,12 +298,13 @@ public class Site {
                     rmMeeting(m, false);
                     Message msg = new Message("cancel", null, T, siteid, m);
                     sendMessage(msg);
+                    i--;
                     break;
                 }
             }
             // If we don't have conflict for meeting m
             if (!conflict){
-                for (int t = s; t <= e; t++) timeline[d][t] = 1;
+                for (int t = s; t < e; t++) timeline[d][t] = 1;
             }
         }
     }
@@ -315,7 +322,7 @@ public class Site {
 
     @Override
     public String toString() {
-        StringBuilder s = new StringBuilder("\nSite info\nID: "
+        StringBuilder s = new StringBuilder("\nSITE INFO\nID: "
                 +siteid+"\nPort: "+port+"\nCounter: "+counter+"\nGlobal Knowledge:\n");
         for (int i=0; i<T.length; i++) {
             for (int j=0; j<T.length; j++) s.append(T[i][j]+" ");
