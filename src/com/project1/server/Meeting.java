@@ -30,7 +30,7 @@ public class Meeting implements Serializable {
         public int compare(Meeting m1, Meeting m2) {
             int lex1 = m1.getDay().compareTo(m2.getDay());
             if (lex1 != 0) return lex1;
-            int lex2 = m1.getStartTime().compareTo(m2.getStartTime());
+            int lex2 = Site.parse_time(m1.getStartTime())-Site.parse_time(m2.getStartTime());
             if (lex2 != 0) return lex2;
             return m1.getName().compareTo(m2.getName());
         }

@@ -106,17 +106,15 @@ public class Server extends Thread {
                 }
                 // Close input stream
                 objIn.close();
-                // Quit when recv command quit
-                if (recvMsg.getMsg().equals("quit")) {
-                    running = false;
-                    mySite.save_state();
-                    continue;
-                }
 
-                // Execute commands
-                exe_cmd(recvMsg);
+                // Quit when receive command "% quit"
+                if (recvMsg.getMsg().equals("quit")) running = false;
+                // Else execute commands
+                else exe_cmd(recvMsg);
 
-                System.out.println(mySite);
+                if (recvMsg.getSender().equals(siteid)) Calendar.mutex.release();
+                // Print MY SITE INFO for debug propose
+//                System.out.println(mySite);
 
             } catch (IOException i) {
                 System.out.println(i);
@@ -124,7 +122,6 @@ public class Server extends Thread {
                 break;
             } finally {
                 mySite.save_state();
-                Calendar.mutex.release();
             }
         }
     }

@@ -40,9 +40,10 @@ public class Client {
                         "<end_time> <participants>");
                 return null;
             }
-            if (cmds[3] != "10/14/2018" && cmds[3] != "10/15/2018" && cmds[3] != "10/16/2018" &&
-                    cmds[3] != "10/17/2018" && cmds[3] != "10/18/2018" && cmds[3] != "10/19/2018" &&
-                    cmds[3] != "10/20/2018") {
+            if (cmds[3].equals("10/14/2018") && cmds[3].equals("10/15/2018") &&
+                    cmds[3].equals("10/16/2018") && cmds[3].equals("10/17/2018") &&
+                    cmds[3].equals("10/18/2018") && cmds[3].equals("10/19/2018") &&
+                    cmds[3].equals("10/20/2018")) {
                 System.out.println("DAY SCHEDULE ERROR: <day> Format Error");
                 return null;
             }
@@ -51,10 +52,9 @@ public class Client {
                 System.out.println("SCHEDULE ERROR: No Valid User Provided");
                 return null;
             }
-            Site tmp = new Site(siteid, 0);
-            int s = tmp.parse_time(cmds[4]);
-            int e = tmp.parse_time(cmds[5]);
-            if (s < 0 || s > 48 || e < 0 || e > 48 || e < s) {
+            int s = Site.parse_time(cmds[4]);
+            int e = Site.parse_time(cmds[5]);
+            if (s < 0 || s >= 48 || e < 0 || e >= 48 || e < s) {
                 System.out.println("TIME SCHEDULE ERROR: <start_time> or <end_time> Format Error");
                 return null;
             }

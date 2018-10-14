@@ -55,8 +55,12 @@ public class Calendar {
 
         Client client = new Client(args[0], port);
 
-        Scanner sc = new Scanner(System.in);
         // Continuously get keyboard commands
+        String welcome = "\nProgram started! You can now start to share your calendar schedule.\n" +
+                "You can view/edit/share you schedules by using \"% schedule\", \"% cancel\",\n" +
+                "\"% view\",\"% myview\", and \"% log\" commands.\n\nPlease enter your command below:";
+        System.out.println(welcome);
+        Scanner sc = new Scanner(System.in);
         String command;
         while (true) {
             try {
@@ -64,10 +68,14 @@ public class Calendar {
                 if (!server.getStatus()) break;
                 command = sc.nextLine();
                 Message msg = client.parse_command(command);
-                if (msg == null) continue;
+                if (msg == null) {
+                    mutex.release();
+                    continue;
+                }
                 client.sendMsg(msg, args[0], port);
-            } catch (InterruptedException i) {
+            } catch (Exception i) {
                 System.out.println(i);
+                mutex.release();
                 break;
             }
         }

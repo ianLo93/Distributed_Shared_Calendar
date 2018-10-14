@@ -32,9 +32,7 @@ public class Site {
             this.plog = (ArrayList<Event>) restore.readObject();
             this.T = (int[][]) restore.readObject();
             restore.close();
-        } catch (IOException i) {
-            init(siteid_, port_);
-        } catch (ClassNotFoundException c) {
+        } catch (Exception i) {
             init(siteid_, port_);
         }
     }
@@ -89,9 +87,9 @@ public class Site {
     public void addMeeting(Meeting m, boolean hasEvent) {
         counter = counter + 1;
         schedule.add(m);
+        updateT(null);
         if (!hasEvent) {
             Event e = new Event("create", counter, siteid, m);
-            updateT(null);
             log.add(e);
             plog.add(e);
             System.out.println("Meeting "+m.getName()+" scheduled");
@@ -99,11 +97,10 @@ public class Site {
     }
 
     public void rmMeeting(Meeting m, boolean hasEvent) {
-        if (!schedule.contains(m)) return ;
         counter = counter + 1;
         schedule.remove(m);
+        updateT(null);
         if (!hasEvent) {
-            updateT(null);
             Event e = new Event("cancel", counter, siteid, m);
             log.add(e);
             plog.add(e);
@@ -177,21 +174,7 @@ public class Site {
         this.schedule = new ArrayList<>();
     }
 
-    private ArrayList<Meeting> relevantMeetings(String[] participants) {
-        ArrayList<Meeting> meetings = new ArrayList<>();
-        HashSet<String> dict = new HashSet<>(Arrays.asList(participants));
-        for (Meeting m : schedule) {
-            for (String p : m.getParticipants()) {
-                if (dict.contains(p)) {
-                    meetings.add(m);
-                    break;
-                }
-            }
-        }
-        return meetings;
-    }
-
-    public int parse_time(String timestamp) {
+    public static int parse_time(String timestamp) {
         String[] clocks = timestamp.split(":");
         if (clocks.length != 2) {
             System.out.println("ERROR: Invalid Time");
@@ -205,6 +188,20 @@ public class Site {
         } catch (NumberFormatException n) {
             return -1;
         }
+    }
+
+    private ArrayList<Meeting> relevantMeetings(String[] participants) {
+        ArrayList<Meeting> meetings = new ArrayList<>();
+        HashSet<String> dict = new HashSet<>(Arrays.asList(participants));
+        for (Meeting m : schedule) {
+            for (String p : m.getParticipants()) {
+                if (dict.contains(p)) {
+                    meetings.add(m);
+                    break;
+                }
+            }
+        }
+        return meetings;
     }
 
     private void updateT(Message msg){
@@ -240,7 +237,7 @@ public class Site {
             for (String sitej: Calendar.phonebook.keySet()) {
                 if (!hasRec(e, sitej)) {allKnow = false; break;}
             }
-            if (allKnow) {plog.remove(e); i--;}
+            if (allKnow) {plog.remove(i); i--;}
         }
     }
 
@@ -261,16 +258,19 @@ public class Site {
     }
 
     public void handle_conflict(){
+        // 2-D time Vec
         int[][] timeline = new int[7][48];
 
-        ArrayList<Meeting> sortedMeeting = schedule;
+        // Get relevant meetings
+        ArrayList<Meeting> sortedMeeting = relevantMeetings(new String[]{siteid});
         Collections.sort(sortedMeeting, new MeetingCompare());
 
         for (int i = 0; i < sortedMeeting.size(); i++) {
             Meeting m = sortedMeeting.get(i);
             int s = parse_time(m.getStartTime());
             int e = parse_time(m.getEndTime());
-            String day = m.getDay().toLowerCase();
+            String day = m.getDay();
+            // Instead of switch cases, we can use HashMap<>
             int d = -1;
             switch (day) {
                 case "10/14/2018":
@@ -297,13 +297,12 @@ public class Site {
             }
             // Check conflicts
             boolean conflict = false;
-            for (int t = s; t <= e; t++) {
+            for (int t = s; t < e; t++) {
                 if (timeline[d][t] == 1) {
                     conflict = true;
-                    rmMeeting(m, false);
+                    if (getMeetingByName(m.getName()) != null) rmMeeting(m, false);
                     Message msg = new Message("cancel", null, T, siteid, m);
                     sendMessage(msg);
-                    i--;
                     break;
                 }
             }
