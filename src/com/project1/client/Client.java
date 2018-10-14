@@ -27,91 +27,91 @@ public class Client {
         // Parse command
         String[] cmds = command.split(" ");
         // Error checking
-        if (cmds.length < 2 || !cmds[0].equals("%")) {
+        if (cmds.length < 1) {
             System.out.println("ERROR: Invalid Command");
-            System.out.println("USAGE: % <command> [<meeting_info>]");
+            System.out.println("USAGE: <command> [<meeting_info>]");
             return null;
         }
         // Implement command "schedule", "cancel", "view", "myview", "log"
-        if (cmds[1].equals("schedule")) {
-            if (cmds.length != 7) {
+        if (cmds[0].equals("schedule")) {
+            if (cmds.length != 6) {
                 System.out.println("ERROR: Invalid Meeting Schedule");
-                System.out.println("USAGE: % schedule <name> <day> <start_time> " +
+                System.out.println("USAGE: schedule <name> <day> <start_time> " +
                         "<end_time> <participants>");
                 return null;
             }
-            if (cmds[3].equals("10/14/2018") && cmds[3].equals("10/15/2018") &&
-                    cmds[3].equals("10/16/2018") && cmds[3].equals("10/17/2018") &&
-                    cmds[3].equals("10/18/2018") && cmds[3].equals("10/19/2018") &&
-                    cmds[3].equals("10/20/2018")) {
+            if (cmds[2].equals("10/14/2018") && cmds[2].equals("10/15/2018") &&
+                    cmds[2].equals("10/16/2018") && cmds[2].equals("10/17/2018") &&
+                    cmds[2].equals("10/18/2018") && cmds[2].equals("10/19/2018") &&
+                    cmds[2].equals("10/20/2018")) {
                 System.out.println("DAY SCHEDULE ERROR: <day> Format Error");
                 return null;
             }
-            String[] participants = valid_users(cmds[6].split(","));
+            String[] participants = valid_users(cmds[5].split(","));
             if (participants.length == 0) {
                 System.out.println("SCHEDULE ERROR: No Valid User Provided");
                 return null;
             }
-            int s = Site.parse_time(cmds[4]);
-            int e = Site.parse_time(cmds[5]);
+            int s = Site.parse_time(cmds[3]);
+            int e = Site.parse_time(cmds[4]);
             if (s < 0 || s >= 48 || e < 0 || e >= 48 || e < s) {
                 System.out.println("TIME SCHEDULE ERROR: <start_time> or <end_time> Format Error");
                 return null;
             }
 
-            return new Message(cmds[1], null, null, this.siteid,
-                    cmds[2], cmds[3], cmds[4], cmds[5], participants);
-        } else if (cmds[1].equals("cancel")) {
-            if (cmds.length != 3) {
+            return new Message(cmds[0], null, null, this.siteid,
+                    cmds[1], cmds[2], cmds[3], cmds[4], participants);
+        } else if (cmds[0].equals("cancel")) {
+            if (cmds.length != 2) {
                 System.out.println("ERROR: Invalid Meeting Cancellation");
-                System.out.println("USAGE: % cancel <name>");
+                System.out.println("USAGE: cancel <name>");
                 return null;
             }
-            return new Message(cmds[1], null, null, this.siteid,
-                    cmds[2], null, null, null, null);
-        } else if (cmds[1].equals("view")) {
-            if (cmds.length != 2) {
+            return new Message(cmds[0], null, null, this.siteid,
+                    cmds[1], null, null, null, null);
+        } else if (cmds[0].equals("view")) {
+            if (cmds.length != 1) {
                 System.out.println("ERROR: Invalid View Command");
-                System.out.println("USAGE: % view");
+                System.out.println("USAGE: view");
                 return null;
             }
-            return new Message(cmds[1], null, null, this.siteid,
+            return new Message(cmds[0], null, null, this.siteid,
                     null, null, null, null, null);
-        } else if (cmds[1].equals("myview")) {
-            if (cmds.length != 2) {
+        } else if (cmds[0].equals("myview")) {
+            if (cmds.length != 1) {
                 System.out.println("ERROR: Invalid MyView Command");
-                System.out.println("USAGE: % myview");
+                System.out.println("USAGE: myview");
                 return null;
             }
-            return new Message(cmds[1], null, null, this.siteid,
+            return new Message(cmds[0], null, null, this.siteid,
                     null, null, null, null, null);
-        } else if (cmds[1].equals("log")) {
-            if (cmds.length != 2) {
+        } else if (cmds[0].equals("log")) {
+            if (cmds.length != 1) {
                 System.out.println("ERROR: Invalid Log Command");
-                System.out.println("USAGE: % log");
+                System.out.println("USAGE: log");
                 return null;
             }
-            return new Message(cmds[1], null, null, this.siteid,
+            return new Message(cmds[0], null, null, this.siteid,
                     null, null, null, null, null);
-        } else if (cmds[1].equals("quit")) {
-            if (cmds.length != 2) {
+        } else if (cmds[0].equals("quit")) {
+            if (cmds.length != 1) {
                 System.out.println("ERROR: Invalid Exit Command");
-                System.out.println("USAGE: % quit");
+                System.out.println("USAGE: quit");
                 return null;
             }
-            return new Message(cmds[1], null, null, this.siteid,
+            return new Message(cmds[0], null, null, this.siteid,
                     null, null, null, null, null);
-        } else if (cmds[1].equals("init")) {
-            if (cmds.length != 2) {
+        } else if (cmds[0].equals("init")) {
+            if (cmds.length != 1) {
                 System.out.println("ERROR: Invalid Initialization Command");
-                System.out.println("USAGE: % init");
+                System.out.println("USAGE: init");
                 return null;
             }
-            return new Message(cmds[1], null, null, this.siteid,
+            return new Message(cmds[0], null, null, this.siteid,
                     null, null, null, null, null);
         } else {
             System.out.println("ERROR: Invalid Command");
-            System.out.println("USAGE: % <command> [<meeting_info>]");
+            System.out.println("USAGE: <command> [<meeting_info>]");
             return null;
         }
     }

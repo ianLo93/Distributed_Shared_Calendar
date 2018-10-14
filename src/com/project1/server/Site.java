@@ -92,7 +92,7 @@ public class Site {
             Event e = new Event("create", counter, siteid, m);
             log.add(e);
             plog.add(e);
-            System.out.println("Meeting "+m.getName()+" scheduled");
+            System.out.println("Meeting "+m.getName()+" scheduled.");
         }
     }
 
@@ -104,7 +104,7 @@ public class Site {
             Event e = new Event("cancel", counter, siteid, m);
             log.add(e);
             plog.add(e);
-            System.out.println("Meeting "+m.getName()+" cancelled");
+            System.out.println("Meeting "+m.getName()+" cancelled.");
         }
     }
 

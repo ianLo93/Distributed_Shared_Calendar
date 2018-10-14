@@ -56,10 +56,10 @@ public class Calendar {
         Client client = new Client(args[0], port);
 
         // Continuously get keyboard commands
-        String welcome = "\nProgram started! You can now start to share your calendar schedule.\n" +
-                "You can view/edit/share you schedules by using \"% schedule\", \"% cancel\",\n" +
-                "\"% view\",\"% myview\", and \"% log\" commands.\n\nPlease enter your command below:";
-        System.out.println(welcome);
+//        String welcome = "\nProgram started! You can now start to share your calendar schedule.\n" +
+//                "You can view/edit/share you schedules by using \"% schedule\", \"% cancel\",\n" +
+//                "\"% view\",\"% myview\", and \"% log\" commands.\n\nPlease enter your command below:";
+//        System.out.println(welcome);
         Scanner sc = new Scanner(System.in);
         String command;
         while (true) {
