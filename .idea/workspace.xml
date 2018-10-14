@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="75cfc975-f7fc-4b37-839f-4f870febbcc6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.sh" beforeDir="false" afterPath="$PROJECT_DIR$/build.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/run.sh" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,7 +15,7 @@
     <session id="-63930642">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.9" value="1" />
           <entry key="project.opened" value="2" />
@@ -100,8 +98,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/project1/server/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1813">
-              <caret line="123" column="33" selection-start-line="123" selection-start-column="23" selection-end-line="123" selection-end-column="33" />
+            <state relative-caret-position="319">
+              <caret line="50" column="30" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -217,12 +215,12 @@
       <option name="presentableId" value="Default" />
       <updated>1539493583845</updated>
       <workItem from="1539493587584" duration="3092000" />
-      <workItem from="1539533673485" duration="285000" />
+      <workItem from="1539533673485" duration="708000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3377000" />
+    <option name="totallyTimeSpent" value="3800000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1388" height="877" extended-state="0" />
@@ -308,8 +306,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/project1/server/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1813">
-          <caret line="123" column="33" selection-start-line="123" selection-start-column="23" selection-end-line="123" selection-end-column="33" />
+        <state relative-caret-position="319">
+          <caret line="50" column="30" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="30" />
         </state>
       </provider>
     </entry>
