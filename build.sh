@@ -18,7 +18,6 @@ javac -sourcepath src -d bin -cp bin/ src/com/project1/app/Calendar.java
 
 # copy the run.sh script from the root of the project into the bin directory
 cp run.sh bin/
-cp knownhosts_udp.txt bin/
 
 echo Done!
 
