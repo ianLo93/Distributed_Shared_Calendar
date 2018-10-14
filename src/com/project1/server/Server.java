@@ -43,7 +43,7 @@ public class Server extends Thread {
                 // Time conflicts
                 if (mySite.hasConflict(day, start, end, participants)) {
                     System.out.println(
-                            "Unable to schedule meeting " + recvMsg.getMeeting().getName());
+                            "Unable to schedule meeting " + recvMsg.getMeeting().getName() + ".");
                 } else {
                     // Update T, schedule, log
                     mySite.addMeeting(recvMsg.getMeeting(), false);
